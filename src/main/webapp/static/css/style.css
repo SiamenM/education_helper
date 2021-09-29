@@ -1,0 +1,113 @@
+html,
+body,
+header {
+    height: 100%;
+}
+
+#intro {
+    background: url(../img/navbar_pic.jpg);
+    background-size: cover;
+}
+
+#registrationForm {
+    background: url(../img/background-author-registration.jpg);
+    background-size: cover;
+}
+
+#requestForm {
+    background: url(../img/background-task-registration1.jpg);
+    background-size: cover;
+}
+
+#complete-intro {
+    background: url(../img/archive.jpg);
+    background-size: cover;
+}
+
+#footer {
+    background: url(../img/footer_pic.jpg);
+    background-size: cover;
+}
+
+#modalContacts {
+    width: 450px;
+    margin: auto;
+}
+
+.container-color {
+    background-color: linen;
+}
+
+.containerWithBorder {
+    border-left: 3px solid crimson;
+}
+
+.btn-black-outline {
+    background-color: transparent !important;
+    border-color: #232323;
+    color: #232323;
+    border-radius: 100px;
+}
+
+.btn-service {
+    width: 200px !important;
+    height: 180px !important;
+    text-align: center !important;
+}
+
+.modal-title {
+    line-height: 1.5;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.list-counter-square {
+    list-style: none;
+    counter-reset: list;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.textBlock {
+    text-align: justify;
+}
+
+.list-counter-square > li {
+    position: relative;
+    display: block;
+    height: 2rem;
+    line-height: 2rem;
+    margin-left: 2rem;
+    margin-bottom: .25rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    color: #fff;
+    background: #f57c00;
+    white-space: nowrap;
+}
+
+.list-counter-square > li:last-child {
+    margin-bottom: 0;
+}
+
+.list-counter-square > li::before {
+    content: counter(list);
+    counter-increment: list;
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    bottom: 0;
+    width: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #fff;
+    background: rgba(245, 124, 0, .75);
+}
