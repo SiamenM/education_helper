@@ -20,5 +20,12 @@
         <servlet-name>homePage</servlet-name>
         <url-pattern>/homepage</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>form_task</servlet-name>
+        <jsp-file>/WEB-INF/jsp/form-task-page.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form_task</servlet-name>
+        <url-pattern>/form_task</url-pattern>
+    </servlet-mapping>
 </web-app>

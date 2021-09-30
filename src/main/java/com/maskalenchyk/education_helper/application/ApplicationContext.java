@@ -100,6 +100,7 @@ public class ApplicationContext implements BeanRegistry {
         registerBean(GuaranteesPage.class);
         registerBean(HomePageCommand.class);
         registerBean(UserCabinetPageCommand.class);
+        registerBean(FormTaskPageCommand.class);
 
     }
 

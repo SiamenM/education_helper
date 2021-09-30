@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.maskalenchyk.education_helper.application.ApplicationConstants" %>
+<%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:choose>
@@ -23,13 +24,13 @@
 
     <title>Education helper</title>
     <!-- MDB icon -->
-    <link rel="icon" href="/static/img/mdb-favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<c:url value="/static/img/mdb-favicon.ico"/>" type="image/x-icon">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
     <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="../static/css/mdb.min.css">
+    <link rel="stylesheet" href="<c:url value="/static/css/mdb.min.css"/>">
     <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="<c:url value="/static/css/style.css"/>">
 </head>
 
 <body>
@@ -79,7 +80,8 @@
                         <img src="<c:url value="/static/img/icons/report.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Рефераты</p>
                     </a>
-                    <a href="#" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}"
+                       class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/list.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Все услуги</p>
                     </a>
@@ -95,26 +97,32 @@
             <table class="table">
                 <tbody>
                 <tr>
-                    <td class="text-center"><img src="<c:url value="/static/img/icons/clock.svg"/>" width="40" class="pt-4" alt="">
+                    <td class="text-center"><img src="<c:url value="/static/img/icons/clock.svg"/>" width="40"
+                                                 class="pt-4" alt="">
                         <p class="text">Экономите время на поиск необходимого для написания студенческой работы
                             материала.</p>
                     </td>
-                    <td class="text-center"><img src="<c:url value="/static/img/icons/notesStack.svg"/>" width="40" class="pt-4" alt="">
+                    <td class="text-center"><img src="<c:url value="/static/img/icons/notesStack.svg"/>" width="40"
+                                                 class="pt-4" alt="">
                         <p class="text">Получаете информацию для студенческой работы в удобном для использования
                             виде.</p>
                     </td>
-                    <td class="text-center"><img src="<c:url value="/static/img/icons/listStructure.svg"/>" width="40" class="pt-4" alt="">
+                    <td class="text-center"><img src="<c:url value="/static/img/icons/listStructure.svg"/>" width="40"
+                                                 class="pt-4" alt="">
                         <p class="text">Приобретаете навыки структурирования материала в студенческой работе.</p>
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-center"><img src="<c:url value="/static/img/icons/listStructure.svg"/>" width="40" class="pt-4" alt="">
+                    <td class="text-center"><img src="<c:url value="/static/img/icons/listStructure.svg"/>" width="40"
+                                                 class="pt-4" alt="">
                         <p class="text">Приобретаете навыки структурирования материала в студенческой работе.</p>
                     </td>
-                    <td class="text-center"><img src="<c:url value="/static/img/icons/graphProfit.svg"/>" width="40" class="pt-4" alt="">
+                    <td class="text-center"><img src="<c:url value="/static/img/icons/graphProfit.svg"/>" width="40"
+                                                 class="pt-4" alt="">
                         <p class="text">Получаете опыт расчетно-аналитической работы по теме исследования.</p>
                     </td>
-                    <td class="text-center"><img src="<c:url value="/static/img/icons/protection.svg"/>" width="40" class="pt-4" alt="">
+                    <td class="text-center"><img src="<c:url value="/static/img/icons/protection.svg"/>" width="40"
+                                                 class="pt-4" alt="">
                         <p class="text">Заручаетесь поддержкой закрепленного специалиста до факта защиты студенческой
                             работы.</p>
                     </td>
@@ -341,7 +349,6 @@
             </div>
         </div>
     </div>
-
 </main>
 
 <jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"/>
@@ -365,22 +372,3 @@
 <script type="text/javascript"></script>
 
 <jsp:include page="/WEB-INF/jsp/fragment/modal/contacts.jsp"/>
-
-
-<!-- Modal Order -->
-<div class="modal fade" id="modalOrder" tabindex="-1" role="dialog" aria-labelledby="modalOrder" aria-hidden="true">
-    <div class="modal-dialog modal modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="text-center">Оценка заказа</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mb-0 pb-0 ">
-
-
-            </div>
-        </div>
-    </div>
-</div>
