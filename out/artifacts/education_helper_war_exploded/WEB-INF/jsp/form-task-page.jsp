@@ -10,18 +10,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Education helper</title>
-    <!-- MDB icon -->
-    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="css/mdb.min.css">
-    <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="css/style.css">
+    <jsp:include page="/WEB-INF/jsp/fragment/sourceStyleLinks.jsp"/>
 </head>
 
 <body>
@@ -98,7 +87,7 @@
                     <table class="table-sm mt-5 p-5 ml-5">
                         <tbody>
                         <tr>
-                            <td><img src="img/number/1y.png" width="40" alt="1"></td>
+                            <td><img src="<c:url value="/static/img/number/1y.png"/>" width="40" alt="1"></td>
                             <td>
                                 <h5 class="mb-1 text-white">Заявка</h5>
                                 <p class="mb-0 text-white">
@@ -110,28 +99,28 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><img src="img/number/2y.png" width="40"  alt="2"> </td>
+                            <td><img src="<c:url value="/static/img/number/2y.png"/>" width="40"  alt="2"> </td>
                             <td>
                                 <h5 class="mb-1 text-white">Расчёт стоимости</h5>
                                 <p class="mb-0 text-white">На основании заявки мы производим расчет стоимости работы</p>
                             </td>
                         </tr>
                         <tr>
-                            <td><img src="img/number/3y.png" width="40" alt="3"> </td>
+                            <td><img src="<c:url value="/static/img/number/3y.png"/>" width="40" alt="3"> </td>
                             <td>
                                 <h5 class="mb-1 text-white">Предоплата</h5>
                                 <p class="mb-0 text-white">Предоплата составляет 50% от стоимости работ</p>
                             </td>
                         </tr>
                         <tr>
-                            <td><img src="img/number/4y.png" width="40" alt="4"> </td>
+                            <td><img src="<c:url value="/static/img/number/4y.png"/>" width="40" alt="4"> </td>
                             <td>
                                 <h5 class="mb-1 text-white">Выполнение</h5>
                                 <p class="mb-0 text-white">Наш специалист максимально качественно и в определенные сроки выполнит Ваше задание</p>
                             </td>
                         </tr>
                         <tr>
-                            <td><img src="img/number/5y.png" width="40" alt="5"> </td>
+                            <td><img src="<c:url value="/static/img/number/5y.png"/>" width="40" alt="5"> </td>
                             <td>
                                 <h5 class="mb-1 text-white">Работа готова</h5>
                                 <p class="mb-0 text-white">Ваше задание выполнено</p>
@@ -144,51 +133,14 @@
         </div>
     </div>
 </main>
-<footer class="page-footer font-small unique-color-dark pt-0" id="footer">
-    <div class="mask flex-center rgba-black-strong">
-        <div class="container">
-            <div class="row py-4">
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-0">
-                    <h6 class="text font-weight-bold"><strong>Контакты</strong></h6>
-                    <hr class="hr-light" style="width: 60 px;">
-                    <p>+375-25-716-72-03</p>
-                    <p>educationhelper@gmail.com</p>
-                </div>
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-0">
-                    <h6 class="text font-weight-bold"><strong>Ссылки</strong></h6>
-                    <hr class="hr-light" style="width: 60 px;">
-                    <p><a href="" data-toggle="modal" data-target="#modalOrder">Оценить заказ</a></p>
-                    <p><a href="#">Стать автором</a></p>
-                    <p><a href="#">Готовые работы</a></p>
-                </div>
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-0">
-                    <h6 class="text font-weight-bold"><strong>Время работы</strong></h6>
-                    <hr class="hr-light" style="width: 60 px;">
-                    <p>Пн-Пт - с 8.00 до 17.00</p>
-                    <p>Сб, Вс - с 10.00 до 17.00</p>
-                    <p>Звонки принимаются круглосуточно</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+
+<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"/>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 
 </html>
-<!-- jQuery -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="js/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
-<!-- Your custom scripts (optional) -->
-<script type="js/custom.js"></script>
-
-
+<jsp:include page="/WEB-INF/jsp/fragment/scriptSourceLink.jsp"/>
 <jsp:include page="/WEB-INF/jsp/fragment/modal/contacts.jsp"/>
 

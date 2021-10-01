@@ -15,22 +15,10 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <title>Education helper</title>
-    <!-- MDB icon -->
-    <link rel="icon" href="<c:url value="/static/img/mdb-favicon.ico"/>" type="image/x-icon">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
-    <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="<c:url value="/static/css/mdb.min.css"/>">
-    <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="<c:url value="/static/css/style.css"/>">
+    <jsp:include page="/WEB-INF/jsp/fragment/sourceStyleLinks.jsp"/>
 </head>
 
 <body>
@@ -46,19 +34,19 @@
         <div class="row">
             <div class="btn-group" role="group" aria-label="services">
                 <div class="col-6 col-sm-12 d-flex justify-content-center">
-                    <a href="#" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/controlWork.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Контрольные работы</p>
                     </a>
-                    <a href="#" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/coursework.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Курсовые работы</p>
                     </a>
-                    <a href="#" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/practiceReport.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Отчёты по практике</p>
                     </a>
-                    <a href="#" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/blueprint.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-3">Чертежи</p>
                     </a>
@@ -66,21 +54,21 @@
             </div>
             <div class="btn-group my-auto" role="group" aria-label="services">
                 <div class="col-6 col-sm-12 pt-4 d-flex justify-content-center">
-                    <a href="#" class="btn btn-info btn-second btn-service mx-3 my-1 text-center purple-gradient"
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 text-center purple-gradient"
                        role="button">
                         <img src="<c:url value="/static/img/icons/graduated.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Дипломные работы</p>
                     </a>
-                    <a href="#" class="btn btn-info btn-second btn-service mx-3 my-1 text-nowrap purple-gradient"
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 text-nowrap purple-gradient"
                        role="button">
                         <img src="<c:url value="/static/img/icons/programming.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Программирование</p>
                     </a>
-                    <a href="#" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/report.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Рефераты</p>
                     </a>
-                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}"
+                    <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_SERVICES_PAGE}"
                        class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/list.svg"/>" width="40" class="pt-4" alt="">
                         <p class="text pt-2">Все услуги</p>
@@ -356,19 +344,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-
 </body>
-
 </html>
-<!-- jQuery -->
-<script type="text/javascript" src="<c:url value="/static/js/jquery.min.js"/>"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="<c:url value="/static/js/popper.min.js"/>"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="<c:url value="/static/js/mdb.min.js"/>"></script>
-<!-- Your custom scripts (optional) -->
-<script type="text/javascript"></script>
-
+<jsp:include page="/WEB-INF/jsp/fragment/scriptSourceLink.jsp"/>
 <jsp:include page="/WEB-INF/jsp/fragment/modal/contacts.jsp"/>

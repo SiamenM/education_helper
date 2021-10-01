@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * Show guarantees page
  */
 @Bean(name = "VIEW_GUARANTEES_PAGE")
-public class GuaranteesPage extends AbstractCommand {
+public class GuaranteesPageCommand extends AbstractCommand {
 
     @Override
     protected void executeWrapper(HttpServletRequest request, HttpServletResponse response) throws CommandException {

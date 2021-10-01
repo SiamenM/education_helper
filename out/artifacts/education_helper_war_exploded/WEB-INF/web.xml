@@ -14,7 +14,7 @@
     </session-config>
     <servlet>
         <servlet-name>homePage</servlet-name>
-        <jsp-file>/WEB-INF/jsp/home-page.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/homePage.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
@@ -27,5 +27,37 @@
     <servlet-mapping>
         <servlet-name>form_task</servlet-name>
         <url-pattern>/form_task</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>clientInstructionPage</servlet-name>
+        <jsp-file>/WEB-INF/jsp/client-instruction.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clientInstructionPage</servlet-name>
+        <url-pattern>/client-instruction</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>services</servlet-name>
+        <jsp-file>/WEB-INF/jsp/servicesPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>services</servlet-name>
+        <url-pattern>/services</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>authorServices</servlet-name>
+        <jsp-file>/WEB-INF/jsp/authorQuestions.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authorServices</servlet-name>
+        <url-pattern>/author-questions</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>authorization</servlet-name>
+        <jsp-file>/WEB-INF/jsp/authorizationPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authorization</servlet-name>
+        <url-pattern>/authorization</url-pattern>
     </servlet-mapping>
 </web-app>

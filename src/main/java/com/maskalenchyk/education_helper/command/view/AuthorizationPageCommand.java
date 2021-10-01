@@ -7,11 +7,13 @@ import com.maskalenchyk.education_helper.core.Bean;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Bean(name = "VIEW_AUTHOR_QUESTIONS_PAGE")
-public class AuthorQuestionPageCommand extends AbstractCommand {
-
+/**
+ * Show authorization page
+ */
+@Bean(name = "VIEW_AUTHORIZATION_PAGE")
+public class AuthorizationPageCommand extends AbstractCommand {
     @Override
     protected void executeWrapper(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        forward(request, response, "/author-questions");
+        forward(request, response, "/authorization");
     }
 }

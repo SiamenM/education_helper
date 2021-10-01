@@ -7,6 +7,7 @@ import com.maskalenchyk.education_helper.core.Bean;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @Bean(name = "VIEW_AUTHOR_REGISTRATION_PAGE")
 public class AuthorRegistrationPageCommand extends AbstractCommand {
 

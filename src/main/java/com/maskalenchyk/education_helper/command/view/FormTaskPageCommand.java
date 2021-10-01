@@ -15,6 +15,6 @@ public class FormTaskPageCommand extends AbstractCommand {
 
     @Override
     protected void executeWrapper(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        forward(request, response, "form_task");
+        forward(request, response, "/form_task");
     }
 }

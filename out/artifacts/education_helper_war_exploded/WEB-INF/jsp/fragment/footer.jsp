@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.maskalenchyk.education_helper.application.ApplicationConstants" %>
+<%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
 
 <footer class="page-footer font-small unique-color-dark pt-0" id="footer">
     <div class="mask flex-center rgba-black-strong">
@@ -15,7 +17,7 @@
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-0">
                     <h6 class="text font-weight-bold"><strong>Ссылки</strong></h6>
                     <hr class="hr-light" style="width: 60px;">
-                    <p><a href="" data-toggle="modal" data-target="#modalOrder">Оценить заказ</a></p>
+                    <p><a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_HOME_PAGE}">Оценить заказ</a></p>
                     <p><a href="#">Стать автором</a></p>
                     <p><a href="#">Готовые работы</a></p>
                 </div>
