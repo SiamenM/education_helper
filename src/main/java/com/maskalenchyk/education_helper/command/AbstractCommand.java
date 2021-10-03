@@ -1,5 +1,6 @@
 package com.maskalenchyk.education_helper.command;
 
+import com.maskalenchyk.education_helper.application.ApplicationConstants;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -17,8 +18,11 @@ public abstract class AbstractCommand implements ServletCommand {
             executeWrapper(request, response);
         } catch (CommandException e) {
             LOGGER.error("Command executing failed " + this.getClass().getName(), e);
-            response.setHeader("errorMessage", e.getMessage());
-            redirect(response, "/error-page.jsp");
+            request.setAttribute(ApplicationConstants.ERROR_MESSAGE, e.getMessage());
+            if (e.getHeader() != null) {
+                request.setAttribute(ApplicationConstants.ERROR_HEADER, e.getHeader());
+            }
+            forward(request, response, ApplicationConstants.ERROR_PAGE_ADDRESS);
         }
     }
 

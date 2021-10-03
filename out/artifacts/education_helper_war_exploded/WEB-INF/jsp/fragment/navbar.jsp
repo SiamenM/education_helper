@@ -21,7 +21,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuClients" role="button"
                    data-bs-toggle="dropdown" aria-expanded="false">Клиентам</a>
                 <ul class="dropdown-menu pb-0" aria-labelledby="navbarDropDownMenuClients">
-                    <li><a class="dropdown-item" href="#">Войти в личный кабинет</a></li>
+                    <li><a class="dropdown-item" href="?{ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHORIZATION_PAGE}">Войти в личный кабинет</a></li>
                     <li><a class="dropdown-item"
                            href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_CLIENT_INSTRUCTION_PAGE}">Инструкция
                         для клиента</a></li>
@@ -35,8 +35,10 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuAuthors" role="button"
                    data-bs-toggle="dropdown" aria-expanded="false">Авторам</a>
                 <ul class="dropdown-menu pb-0" aria-labelledby="navbarDropDownMenuAuthors">
-                    <li><a class="dropdown-item" href="#">Стать автором</a></li>
-                    <li><a class="dropdown-item" href="#">Войти в личный кабинет</a></li>
+                    <c:if test="${not empty ApplicationConstants.USER_PARAMETER}">
+                        <li><a class="dropdown-item" href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHOR_REGISTRATION_PAGE}">Стать автором</a></li>
+                        <li><a class="dropdown-item" href="#">Войти в личный кабинет</a></li>
+                    </c:if>
                     <li><a class="dropdown-item"
                            href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHOR_QUESTIONS_PAGE}">Часто
                         задаваемые вопросы</a></li>

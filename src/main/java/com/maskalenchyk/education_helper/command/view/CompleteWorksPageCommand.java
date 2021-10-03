@@ -15,6 +15,6 @@ public class CompleteWorksPageCommand extends AbstractCommand {
 
     @Override
     protected void executeWrapper(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        forward(request, response, "complete-works");
+        forward(request, response, "/complete-works");
     }
 }

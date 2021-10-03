@@ -1,22 +1,26 @@
 package com.maskalenchyk.education_helper.command;
 
 public class CommandException extends Exception {
-    public CommandException() {
-    }
+    private final String message;
+    private final String header;
+
 
     public CommandException(String message) {
-        super(message);
+        this.message = message;
+        this.header = null;
     }
 
-    public CommandException(String message, Throwable cause) {
-        super(message, cause);
+    public CommandException(String header, String message) {
+        this.message = message;
+        this.header = header;
     }
 
-    public CommandException(Throwable cause) {
-        super(cause);
+    @Override
+    public String getMessage() {
+        return message;
     }
 
-    public CommandException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public String getHeader() {
+        return header;
     }
 }

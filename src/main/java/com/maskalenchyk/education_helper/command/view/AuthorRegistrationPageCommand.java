@@ -19,6 +19,7 @@ public class AuthorRegistrationPageCommand extends AbstractCommand {
         if (currentSession == null || currentSession.getAttribute(ApplicationConstants.USER_PARAMETER) == null) {
             forward(request, response, "/author-registration-form");
         } else {
+            //make forward on errorPage
             throw new CommandException("The user is logged in this operation is not available");
         }
     }

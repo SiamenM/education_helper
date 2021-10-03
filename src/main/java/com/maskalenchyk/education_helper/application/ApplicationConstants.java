@@ -16,6 +16,7 @@ public class ApplicationConstants {
 
     public static final String ERROR_HEADER = "errorHeader";
     public static final String ERROR_MESSAGE = "errorMessage";
+    public static final String ERROR_PAGE_ADDRESS = "/error";
 
     private ApplicationConstants() {
     }

@@ -60,4 +60,12 @@
         <servlet-name>authorization</servlet-name>
         <url-pattern>/authorization</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>authorRegistration</servlet-name>
+        <jsp-file>/WEB-INF/jsp/authorRegistrationPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authorRegistration</servlet-name>
+        <url-pattern>/author-registration-form</url-pattern>
+    </servlet-mapping>
 </web-app>
