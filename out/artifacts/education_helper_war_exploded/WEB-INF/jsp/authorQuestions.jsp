@@ -4,7 +4,7 @@
 <%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
 
 <!doctype html>
-<html lang="en">
+<html lang="${sessionScope.locale}">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">

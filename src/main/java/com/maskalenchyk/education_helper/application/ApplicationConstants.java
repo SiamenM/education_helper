@@ -8,6 +8,8 @@ public class ApplicationConstants {
     public static final String EMAIL_SERVICE_RESOURCE_FILE = "/mailService.properties";
 
     public static final String LOCALE_PARAMETER = "locale";
+    public static final String ENGLISH_LOCALE="en";
+    public static final String RUSSIAN_LOCALE="ru";
 
     public static final String COMMAND_NAME_PARAMETER = "cmd";
     public static final String DEFAULT_COMMAND_NAME = CommandType.VIEW_HOME_PAGE.name();

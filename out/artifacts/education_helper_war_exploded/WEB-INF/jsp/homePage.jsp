@@ -3,16 +3,15 @@
 <%@ page import="com.maskalenchyk.education_helper.application.ApplicationConstants" %>
 <%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <c:choose>
     <c:when test="${not empty param.get(ApplicationConstants.LOCALE_PARAMETER)}">
         <c:set var="locale" scope="session" value="${param.get(ApplicationConstants.LOCALE_PARAMETER)}"/>
     </c:when>
 </c:choose>
-<%--<fmt: setLocale value="${sessionScope.locale}"/>--%>
-<%--<fmt:setBundle basename="page_content"/>--%>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="page_content"/>
 <!doctype html>
-<html lang="en">
+<html lang="${sessionScope.locale}">
 
 <head>
     <meta charset="utf-8">

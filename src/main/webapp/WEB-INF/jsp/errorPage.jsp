@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!doctype html>
-<html lang="en">
+<html lang="${sessionScope.locale}">
 
 <head>
     <meta charset="utf-8">
