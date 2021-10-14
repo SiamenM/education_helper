@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.maskalenchyk.education_helper.application.ApplicationConstants" %>
-<%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
 
 <!doctype html>
 <html lang="en">
@@ -20,6 +18,9 @@
 </div>
 <main>
     <div class="jumbotron container-color align-items-center min-vh-100 mb-0 pb-0 px-0">
+        <br>
+        <br>
+        <br>
         <div class="card bg-light mx-auto mt-5 px-5 pt-5" style="width: 30rem;">
             <form class="form-horizontal pb-1">
                 <h3 class="text-center font-weight-bold">Вход в личный кабинет</h3>

@@ -97,12 +97,12 @@ public class ApplicationContext implements BeanRegistry {
         registerBean(AuthorRegistrationPageCommand.class);
         registerBean(ClientInstructionPageCommand.class);
         registerBean(CompleteWorksPageCommand.class);
-        registerBean(GuaranteesPageCommand.class);
         registerBean(HomePageCommand.class);
         registerBean(UserCabinetPageCommand.class);
         registerBean(FormTaskPageCommand.class);
         registerBean(ServicePageCommand.class);
-
+        registerBean(AuthorizationPageCommand.class);
+        registerBean(GuaranteesPageCommand.class);
     }
 
     private void registerDataSource() {

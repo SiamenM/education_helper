@@ -21,14 +21,18 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuClients" role="button"
                    data-bs-toggle="dropdown" aria-expanded="false">Клиентам</a>
                 <ul class="dropdown-menu pb-0" aria-labelledby="navbarDropDownMenuClients">
-                    <li><a class="dropdown-item" href="?{ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHORIZATION_PAGE}">Войти в личный кабинет</a></li>
+                    <li><a class="dropdown-item"
+                           href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHORIZATION_PAGE}">Войти
+                        в личный кабинет</a></li>
                     <li><a class="dropdown-item"
                            href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_CLIENT_INSTRUCTION_PAGE}">Инструкция
                         для клиента</a></li>
                     <li><a class="dropdown-item"
                            href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_SERVICES_PAGE}">Услуги</a>
                     </li>
-                    <li><a class="dropdown-item " href="#">Наши преимущества</a></li>
+                    <li><a class="dropdown-item"
+                           href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_GUARANTEES_PAGE}">Наши
+                        гарантии</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -36,8 +40,12 @@
                    data-bs-toggle="dropdown" aria-expanded="false">Авторам</a>
                 <ul class="dropdown-menu pb-0" aria-labelledby="navbarDropDownMenuAuthors">
                     <c:if test="${not empty ApplicationConstants.USER_PARAMETER}">
-                        <li><a class="dropdown-item" href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHOR_REGISTRATION_PAGE}">Стать автором</a></li>
-                        <li><a class="dropdown-item" href="#">Войти в личный кабинет</a></li>
+                        <li><a class="dropdown-item"
+                               href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHOR_REGISTRATION_PAGE}">Стать
+                            автором</a></li>
+                        <li><a class="dropdown-item"
+                               href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHORIZATION_PAGE}">Войти
+                            в личный кабинет</a></li>
                     </c:if>
                     <li><a class="dropdown-item"
                            href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_AUTHOR_QUESTIONS_PAGE}">Часто
@@ -53,8 +61,6 @@
                 <ul class="dropdown-menu pb-0" aria-labelledby="navbarDropDownMenuAboutUs">
                     <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalContacts">Контакты</a>
                     </li>
-                    <li><a class="dropdown-item" href="#">Наши премущества</a></li>
-                    <li><a class="dropdown-item" href="#">Наши гарантии</a></li>
                 </ul>
             </li>
         </ul>

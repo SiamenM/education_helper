@@ -68,4 +68,21 @@
         <servlet-name>authorRegistration</servlet-name>
         <url-pattern>/author-registration-form</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>errorPage</servlet-name>
+        <jsp-file>/WEB-INF/jsp/errorPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>errorPage</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>guaranteesPage</servlet-name>
+        <jsp-file>/WEB-INF/jsp/guaranteesPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>guaranteesPage</servlet-name>
+        <url-pattern>/guarantees</url-pattern>
+    </servlet-mapping>
 </web-app>
+
