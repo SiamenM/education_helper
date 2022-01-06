@@ -28,26 +28,26 @@
 <main>
     <div class="container-fluid container-color pt-3">
         <div class="row mb-3">
-            <h2 class="text-center font-weight-bold">Наши услуги</h2>
+            <h2 class="text-center font-weight-bold"><fmt:message key="mainpage.label.service"/></h2>
         </div>
         <div class="row">
             <div class="btn-group" role="group" aria-label="services">
                 <div class="col-6 col-sm-12 d-flex justify-content-center">
                     <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/controlWork.svg"/>" width="40" class="pt-4" alt="">
-                        <p class="text pt-2">Контрольные работы</p>
+                        <p class="text pt-2"><fmt:message key="mainpage.button.control"/></p>
                     </a>
                     <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/coursework.svg"/>" width="40" class="pt-4" alt="">
-                        <p class="text pt-2">Курсовые работы</p>
+                        <p class="text pt-2"><fmt:message key="mainpage.button.coursework"/></p>
                     </a>
                     <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/practiceReport.svg"/>" width="40" class="pt-4" alt="">
-                        <p class="text pt-2">Отчёты по практике</p>
+                        <p class="text pt-2"><fmt:message key="mainpage.button.practice"/></p>
                     </a>
                     <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/blueprint.svg"/>" width="40" class="pt-4" alt="">
-                        <p class="text pt-3">Чертежи</p>
+                        <p class="text pt-3"><fmt:message key="mainpage.button.blueprint"/></p>
                     </a>
                 </div>
             </div>
@@ -56,21 +56,21 @@
                     <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 text-center purple-gradient"
                        role="button">
                         <img src="<c:url value="/static/img/icons/graduated.svg"/>" width="40" class="pt-4" alt="">
-                        <p class="text pt-2">Дипломные работы</p>
+                        <p class="text pt-2"><fmt:message key="mainpage.button.graduate"/></p>
                     </a>
                     <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 text-nowrap purple-gradient"
                        role="button">
                         <img src="<c:url value="/static/img/icons/programming.svg"/>" width="40" class="pt-4" alt="">
-                        <p class="text pt-2">Программирование</p>
+                        <p class="text pt-2"><fmt:message key="mainpage.button.programming"/></p>
                     </a>
                     <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_FORM_TASK_PAGE}" class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/report.svg"/>" width="40" class="pt-4" alt="">
-                        <p class="text pt-2">Рефераты</p>
+                        <p class="text pt-2"><fmt:message key="mainpage.button.essay"/></p>
                     </a>
                     <a href="?${ApplicationConstants.COMMAND_NAME_PARAMETER}=${CommandType.VIEW_SERVICES_PAGE}"
                        class="btn btn-info btn-second btn-service mx-3 my-1 purple-gradient" role="button">
                         <img src="<c:url value="/static/img/icons/list.svg"/>" width="40" class="pt-4" alt="">
-                        <p class="text pt-2">Все услуги</p>
+                        <p class="text pt-2"><fmt:message key="mainpage.button.services"/></p>
                     </a>
                 </div>
             </div>
@@ -78,7 +78,7 @@
     </div>
     <div class="container-fluid container-color">
         <div class="row mb-3">
-            <h2 class="text-center font-weight-bold mt-3">Преимущества</h2>
+            <h2 class="text-center font-weight-bold mt-3"><fmt:message key="mainpage.label.advantage"/></h2>
         </div>
         <div class="row  mx-5 px-5 justify-content-center">
             <table class="table">
@@ -120,7 +120,7 @@
     </div>
     <div class="container-fluid container-color">
         <div class="row justify-content-center">
-            <h2 class="text-center font-weight-bold">Как заказать?</h2>
+            <h2 class="text-center font-weight-bold"><fmt:message key="mainpage.label.order"/></h2>
             <p class="text-center font-weight-normal">
                 Процесс заказа дипломной или курсовой консультации довольно прост. Заполняете форму-заявку через наш
                 сайт (кнопка "Оценить заказ"), после чего мы подбираем для вас персонального менеджера и рассчитываем

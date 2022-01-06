@@ -32,5 +32,6 @@ public class SignInCommand extends AbstractCommand {
     private UserAccount getUser(HttpServletRequest request, String login, String password) {
         HttpSession session = request.getSession();
         UserAccount user = (UserAccount) session.getAttribute(ApplicationConstants.USER_PARAMETER);
+        return user;
     }
 }
