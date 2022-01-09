@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.maskalenchyk.education_helper.application.ApplicationConstants" %>
 <%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:choose>
     <c:when test="${not empty param.get(ApplicationConstants.LOCALE_PARAMETER)}">
         <c:set var="locale" scope="session" value="${param.get(ApplicationConstants.LOCALE_PARAMETER)}"/>

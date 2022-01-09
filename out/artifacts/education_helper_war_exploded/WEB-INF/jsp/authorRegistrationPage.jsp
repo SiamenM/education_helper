@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.maskalenchyk.education_helper.application.ApplicationConstants" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="page_content"/>
 
 <!doctype html>
 <html lang="${sessionScope.locale}">
@@ -26,14 +28,14 @@
                 <div class="col-12 col-md-7 col-lg-6 pb-4 my-5 justify-content-center">
                     <div class="card bg-light mt-5 p-5 offset-md-2" style="width: 30rem;">
                         <form class="form-horizontal">
-                            <h3 class="text-center font-weight-bold">Регистрация автора</h3>
-                            <label class="pt-2 my-0" for="nameAuthor">ФИО</label>
+                            <h3 class="text-center font-weight-bold"><fmt:message key="registrationPage.label.registration"/></h3>
+                            <label class="pt-2 my-0" for="nameAuthor"><fmt:message key="registrationPage.label.name"/></label>
                             <input type="text" class="form-control" id="nameAuthor" required>
-                            <label class="pt-2 my-0" for="emailAuthor">Почта</label>
+                            <label class="pt-2 my-0" for="emailAuthor"><fmt:message key="registrationPage.label.email"/></label>
                             <input type="email" class="form-control" id="emailAuthor" required>
-                            <label class="pt-2 my-0" for="phoneAuthor">Телефон</label>
+                            <label class="pt-2 my-0" for="phoneAuthor"><fmt:message key="registrationPage.label.phone"/></label>
                             <input type="tel" class="form-control" id="phoneAuthor" required>
-                            <label class="pt-2 my-0" for="specializationAuthor">Специализация</label>
+                            <label class="pt-2 my-0" for="specializationAuthor"><fmt:message key="registrationPage.label.specialization"/></label>
                             <select class="form-control" id="specializationAuthor">
                                 <option>1</option>
                                 <option>2</option>
@@ -50,25 +52,25 @@
                                 <option>4</option>
                                 <option>4</option>
                             </select>
-                            <label class="pt-2 my-0" for="documentsAuthor">Копии документов об образовании</label>
+                            <label class="pt-2 my-0" for="documentsAuthor"><fmt:message key="registrationPage.label.documents"/></label>
                             <input type="file" id="inputFile" name="upload_file[]" class="form-control display-7" min="1" max="10" multiple="true">
-                            <label class="pt-2 my-0" for="documentsAuthor">Дополнительная информация</label>
+                            <label class="pt-2 my-0" for="documentsAuthor"><fmt:message key="registrationPage.label.additionalInformation"/></label>
                             <textarea class="form-control" id="documentsAuthor" rows="4"></textarea>
                             <br>
                             <div class="col text-center">
-                                <input class="btn btn-rounded mb-4 purple-gradient" type="submit" onclick="message('Ваше заявка отправлена, наш менеджер свяжется с Вами')" value="Отправить">
+                                <input class="btn btn-rounded mb-4 purple-gradient" type="submit" onclick="message('<fmt:message key="registrationPage.message.msgAfterSend"/>')" value="<fmt:message key="registrationPage.button.send"/>">
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-12 col-md-7 col-lg-6">
                     <div class="col">
-                        <h3 class="text-center font-weight-bold text-white">Автор студенческих работ</h3>
-                        <p class="text-center text-white">Требуются авторы студенческих работ для сотрудничества</p>
-                        <p class="text-center text-white">Заполните представленную форму, после чего мы свяжемся с Вами, и позвоните нам</p>
+                        <h3 class="text-center font-weight-bold text-white"><fmt:message key="registrationPage.label.authorHead"/></h3>
+                        <p class="text-center text-white"><fmt:message key="registrationPage.label.authorRequired"/></p>
+                        <p class="text-center text-white"><fmt:message key="registrationPage.label.fillForm"/></p>
                         <div class="row text-center">
                             <div class="col">
-                                <a href="#" class="btn btn-info btn-rounded mb-4 purple-gradient" data-toggle="modal" data-target="#modalContacts">Позвонить</a>
+                                <a href="#" class="btn btn-info btn-rounded mb-4 purple-gradient" data-toggle="modal" data-target="#modalContacts"><fmt:message key="registrationPage.button.call"/></a>
                             </div>
                         </div>
                     </div>

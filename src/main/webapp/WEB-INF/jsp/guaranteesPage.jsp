@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="page_content"/>
 <!doctype html>
 <html lang="${sessionScope.locale}">
 
@@ -19,57 +20,45 @@
 
     <main class="container-color pb-3">
         <div class="container mt-5 pt-3 ">
-            <h2>1. Мы гарантируем:</h2>
+            <h2><fmt:message key="guaranteesPage.head.weGuarantees"/></h2>
             <ul>
-                <li>высокое качество предоставляемых услуг;</li>
-                <li>индивидуальный подход;</li>
-                <li>конфиденциальность;</li>
-                <li>полное сопровождение студенческой работы до защиты для достижения желаемого результата;</li>
-                <li>полное соответствие оказываемых услуг требованиям клиента;</li>
-                <li>точное соблюдение оговоренных сроков выполнения заказа.</li>
+                <li><fmt:message key="guaranteesPage.text.guaranteesQuality"/></li>
+                <li><fmt:message key="guaranteesPage.text.guaranteesApproach"/></li>
+                <li><fmt:message key="guaranteesPage.text.guaranteesConfidentiality"/></li>
+                <li><fmt:message key="guaranteesPage.text.guaranteesSupport"/></li>
+                <li><fmt:message key="guaranteesPage.text.guaranteesRequirements"/></li>
+                <li><fmt:message key="guaranteesPage.text.guaranteesTiming"/></li>
             </ul>
             <hr>
         </div>
         <div class="container">
-            <h2>2. Мы обеспечим:</h2>
-            <p>Бесплатный поиск и обработку дополнительного материала для доработки студенческой работы в случаях, если
-                она была обусловлена нашей виной. В противном случае, если к студенческой работе со стороны
-                преподавателя предъявляются новые требования, не оговоренные изначально при заказе, и при условии
-                высокой трудоемкости их выполнения, они будут выполнены на платной основе.</p>
+            <h2><fmt:message key="guaranteesPage.head.weProvides"/></h2>
+            <p><fmt:message key="guaranteesPage.text.provides"/></p>
             <hr>
         </div>
         <div class="container">
-            <h2>3. Доработаем в срок:</h2>
-            <p>Сроки бесплатного устранения замечаний по работе зависят от их объема и сложности, но не могут составлять
-                менее 3-х и более 9-ти рабочих дней</p>
+            <h2><fmt:message key="guaranteesPage.head.weFinalize"/></h2>
+            <p><fmt:message key="guaranteesPage.text.finalize"/></p>
             <hr>
         </div>
         <div class="container">
-            <h2>4. Бесплатно исправим:</h2>
-            <p>Бесплатный поиск и обработка дополнительного материала для доработки студенческой работы осуществляются в
-                случаях, если на работе присутствуют отметки проверяющего (рецензента), его корректирующие пометки либо
-                рецензия.</p>
+            <h2><fmt:message key="guaranteesPage.head.freeCorrection"/></h2>
+            <p><fmt:message key="guaranteesPage.text.correction"/></p>
             <hr>
         </div>
         <div class="container">
-            <h2>Гарантируем 100% допуск:</h2>
-            <p>Мы даем стопроцентную гарантию допуска к защите вашей работы, однако не гарантируем получение вами
-                наивысшей оценки знаний по результатам защиты в силу влияния на итоговую оценку субъективных
-                факторов.</p>
+            <h2><fmt:message key="guaranteesPage.head.admittance"/></h2>
+            <p><fmt:message key="guaranteesPage.text.admittance"/></p>
             <hr>
         </div>
         <div class="container">
-            <h2>Проверяем на Антиплагиат:</h2>
-            <p>При необходимости оригинальность работ оценивается по системе Антиплагиат (antiplagiat.ru) с подключенным
-                модулем "Интернет" (бесплатная версия без подключения расширенных модулей). Процент оригинальности (если
-                таковой требуется преподавателем) указывается заказчиком при оформлении заказа.</p>
+            <h2><fmt:message key="guaranteesPage.head.plagiaryCheck"/></h2>
+            <p><fmt:message key="guaranteesPage.text.plagiary"/></p>
             <hr>
         </div>
         <div class="container">
-            <h2>Гарантийный срок:</h2>
-            <p class="text mb-0">Срок гарантии на оказанные услуги составляет 30 дней с момента окончательного расчета
-                за услуги. По истечении указанного срока удовлетворение претензий осуществляются на платной основе по
-                согласованию сторон.</p>
+            <h2><fmt:message key="guaranteesPage.head.guaranteePeriod"/></h2>
+            <p><fmt:message key="guaranteesPage.text.guaranteePeriod"/></p>
             <hr>
         </div>
     </main>
