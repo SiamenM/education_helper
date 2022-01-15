@@ -11,9 +11,17 @@ public class UserAccount implements Entity {
     private String phone;
     private String password;
     private Long registrationDate;
+    private Boolean isAvailable;
     private List<UserRole> userRoles;
     private Wallet wallet;
 
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
+    }
 
     public Long getId() {
         return id;

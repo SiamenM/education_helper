@@ -52,6 +52,7 @@ user_account_name VARCHAR(100) NOT NULL,
 user_account_email VARCHAR(100) UNIQUE NOT NULL,
 user_account_phone VARCHAR(20) UNIQUE NOT NULL,
 user_account_password VARCHAR(100) NOT NULL,
+user_account_is_available TINYINT NOT NULL DEFAULT 0,
 user_account_registration_date TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
 id_wallet BIGINT UNSIGNED UNIQUE,
 PRIMARY KEY (user_account_id,id_wallet),
@@ -94,10 +95,11 @@ DROP TABLE IF EXISTS file;
 CREATE TABLE file (
 id_file SERIAL,
 file_name VARCHAR(100) NOT NULL,
-archive MEDIUMBLOB NOT NULL,
+file_archive MEDIUMBLOB NOT NULL,
 file_price DECIMAL(10,2) NOT NULL,
-description VARCHAR(5000) NOT NULL,
+file_description VARCHAR(5000) NOT NULL,
 add_file_date TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6),
+file_is_available TINYINT NOT NULL DEFAULT 0,
 disciple_id BIGINT UNSIGNED NOT NULL,
 type_of_paper_id BIGINT UNSIGNED NOT NULL,
 user_author_id BIGINT UNSIGNED NOT NULL,
@@ -139,13 +141,13 @@ FOREIGN KEY (file_id) REFERENCES file (id_file)
 ON DELETE CASCADE
 );
 
-INSERT INTO file (file_name,archive,file_price,description,disciple_id,type_of_paper_id,user_author_id)
+INSERT INTO file (file_name,file_archive,file_price,file_description,disciple_id,type_of_paper_id,user_author_id)
 VALUES
 ('file1',BINARY('file1'),100,'file1 description',1,1,2);
-INSERT INTO file (file_name,archive,file_price,description,disciple_id,type_of_paper_id,user_author_id)
+INSERT INTO file (file_name,file_archive,file_price,file_description,disciple_id,type_of_paper_id,user_author_id)
 VALUES
 ('file2',BINARY('file2'),1,'file1 description2',3,3,2);
-INSERT INTO file (file_name,archive,file_price,description,disciple_id,type_of_paper_id,user_author_id)
+INSERT INTO file (file_name,file_archive,file_price,file_description,disciple_id,type_of_paper_id,user_author_id)
 VALUES
 ('file2',BINARY('file2'),0,'file1 description3',5,2,1);
 

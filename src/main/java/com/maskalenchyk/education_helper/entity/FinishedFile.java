@@ -16,7 +16,16 @@ public class FinishedFile implements Entity {
     private Disciple disciple;
     private TypeOfPaper typeOfPaper;
     private UserAccount author;
+    private Boolean isAvailable;
     private List<CommentForFile> commentsForFiles;
+
+    public Boolean getAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(Boolean available) {
+        isAvailable = available;
+    }
 
     public Long getId() {
         return id;
