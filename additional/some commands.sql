@@ -1,13 +1,13 @@
 -- Выбор пользователя по ID
 SELECT 
-user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone,user.user_account_password,user.user_account_registration_date,
-wallet.wallet_id,wallet.wallet_amount,
+user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone,user.user_account_password,user.user_account_is_available,
+user.user_account_registration_date,wallet.wallet_id,wallet.wallet_amount,
 role.role_name
 FROM user_account AS user
 JOIN wallet ON wallet.wallet_id=user.id_wallet
 JOIN user_account_has_role ON user.user_account_id=user_account_has_role.user_account_id
 JOIN role ON user_account_has_role.role_id=role.role_id
-WHERE user.user_account_id=1;
+WHERE user.user_account_id=3;
 
 -- Выбор файла по ID
 SELECT
@@ -62,5 +62,5 @@ INSERT into user_account_has_role (user_account_id,role_id ) VALUES(2,(SELECT ro
 DELETE FROM user_account_has_role WHERE user_account_id = 2 and role_id =(SELECT role_id FROM role WHERE role_name='admin');
 
 UPDATE user_account SET user_account_password='hi' WHERE user_account_id=3;
-UPDATE user_account SET user_account_name='1',user_account_email='email',user_account_phone='phone' WHERE user_account_id=3;
+UPDATE user_account SET user_account_name='1',user_account_email='email',user_account_phone='phone',user_account_is_available=0 WHERE user_account_id=3;
 SELECT * FROM user_account;

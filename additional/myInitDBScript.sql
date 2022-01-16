@@ -73,21 +73,24 @@ ON DELETE CASCADE,
 FOREIGN KEY (role_id) REFERENCES role(role_id)
 );
 
-INSERT INTO user_account (user_account_name,user_account_email,user_account_phone,user_account_password,user_account_registration_date,id_wallet) 
+INSERT INTO user_account (user_account_name,user_account_email,user_account_phone,user_account_password,user_account_is_available,
+user_account_registration_date,id_wallet) 
 VALUES 
-('admin','pupkin@mail.ru','+375256789887','$P$BouuqLmDzhR7UkGqPJDV8qyzwaBUTK0','2020-07-17',1);
+('admin','pupkin@mail.ru','+375256789887','$P$BouuqLmDzhR7UkGqPJDV8qyzwaBUTK0',1,'2020-07-17',1);
 
 INSERT INTO user_account_has_role VALUES ((SELECT LAST_INSERT_ID()),(SELECT role_id FROM role WHERE role_name = 'admin'));
 
-INSERT INTO user_account (user_account_name,user_account_email,user_account_phone,user_account_password,user_account_registration_date,id_wallet) 
+INSERT INTO user_account (user_account_name,user_account_email,user_account_phone,user_account_password,user_account_is_available,
+user_account_registration_date,id_wallet) 
 VALUES 
-('user1','user1@mail.ru','+375256789987','$P$BouuqLmDzhR7UkGqPJDV8qyzwaBUTK0','2020-07-17',2);
+('user1','user1@mail.ru','+375256789987','$P$BouuqLmDzhR7UkGqPJDV8qyzwaBUTK0',1,'2020-07-17',2);
 
 INSERT INTO user_account_has_role VALUES ((SELECT LAST_INSERT_ID()),(SELECT role_id FROM role WHERE role_name = 'user'));
 
-INSERT INTO user_account (user_account_name,user_account_email,user_account_phone,user_account_password,user_account_registration_date,id_wallet) 
+INSERT INTO user_account (user_account_name,user_account_email,user_account_phone,user_account_password,user_account_is_available,
+user_account_registration_date,id_wallet) 
 VALUES 
-('user2','user2@mail.ru','+375256778887','$P$BouuqLmDzhR7UkGqPJDV8qyzwaBUTK0','2020-07-17',3);
+('user2','user2@mail.ru','+375256778887','$P$BouuqLmDzhR7UkGqPJDV8qyzwaBUTK0',1,'2020-07-17',3);
 
 INSERT INTO user_account_has_role VALUES ((SELECT LAST_INSERT_ID()),(SELECT role_id FROM role WHERE role_name = 'user'));
 
@@ -141,15 +144,15 @@ FOREIGN KEY (file_id) REFERENCES file (id_file)
 ON DELETE CASCADE
 );
 
-INSERT INTO file (file_name,file_archive,file_price,file_description,disciple_id,type_of_paper_id,user_author_id)
+INSERT INTO file (file_name,file_archive,file_price,file_description,file_is_available,disciple_id,type_of_paper_id,user_author_id)
 VALUES
-('file1',BINARY('file1'),100,'file1 description',1,1,2);
-INSERT INTO file (file_name,file_archive,file_price,file_description,disciple_id,type_of_paper_id,user_author_id)
+('file1',BINARY('file1'),100,'file1 description',1,1,1,2);
+INSERT INTO file (file_name,file_archive,file_price,file_description,file_is_available,disciple_id,type_of_paper_id,user_author_id)
 VALUES
-('file2',BINARY('file2'),1,'file1 description2',3,3,2);
-INSERT INTO file (file_name,file_archive,file_price,file_description,disciple_id,type_of_paper_id,user_author_id)
+('file2',BINARY('file2'),1,'file1 description2',1,3,3,2);
+INSERT INTO file (file_name,file_archive,file_price,file_description,file_is_available,disciple_id,type_of_paper_id,user_author_id)
 VALUES
-('file2',BINARY('file2'),0,'file1 description3',5,2,1);
+('file2',BINARY('file2'),0,'file1 description3',1,5,2,1);
 
 INSERT INTO user_account_has_file (user_account_id, file_id)
 VALUES (1,1);
