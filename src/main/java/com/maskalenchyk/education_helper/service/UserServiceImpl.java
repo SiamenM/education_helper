@@ -19,10 +19,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
-    private UserAccountDao userAccountDao;
-    private PasswordService passwordService;
-    private EmailService emailService;
-    private WalletService walletService;
+    private final UserAccountDao userAccountDao;
+    private final PasswordService passwordService;
+    private final EmailService emailService;
+    private final WalletService walletService;
 
     public UserServiceImpl(UserAccountDao userAccountDao, PasswordService passwordService, EmailService emailService,
                            WalletService walletService) {
@@ -50,9 +50,7 @@ public class UserServiceImpl implements UserService {
             } else if (ApplicationUtils.isEmailAddress(login)) {
                 return userAccountDao.findByEmail(login);
             } else {
-                String errorMessage = "Login for " + login + " failed, invalid login or password";
-                LOGGER.debug(errorMessage);
-                throw new UserServiceException(errorMessage, UserServiceException.WRONG_INPUT);
+                return null;
             }
         } catch (DaoException e) {
             LOGGER.error(MessageFormat.format("User finding by login exception: {0}", e.getMessage()));
@@ -63,19 +61,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserAccount signIn(String login, String password) throws ServiceException {
         UserAccount userAccount = getByLogin(login);
-        String errorMessage = "Login for " + login + " failed, invalid login or password";
         if (userAccount != null) {
             String passwordHash = passwordService.getPasswordHash(password);
             if (userAccount.getPassword().equals(passwordHash)) {
                 return userAccount;
             } else {
-                LOGGER.debug(errorMessage);
-                throw new UserServiceException(errorMessage, UserServiceException.WRONG_INPUT);
+                return null;
             }
-        } else {
-            LOGGER.debug(errorMessage);
-            throw new UserServiceException(errorMessage, UserServiceException.WRONG_INPUT);
         }
+        return null;
     }
 
     @Override

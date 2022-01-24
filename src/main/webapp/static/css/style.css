@@ -3,12 +3,10 @@ body,
 header {
     height: 100%;
 }
-
 #intro {
     background: url(../img/navbar_pic.jpg);
     background-size: cover;
 }
-
 #registrationForm {
     background: url(../img/background-author-registration.jpg);
     background-size: cover;
@@ -27,6 +25,7 @@ header {
 #footer {
     background: url(../img/footer_pic.jpg);
     background-size: cover;
+    height: 2.5rem;
 }
 
 #modalContacts {

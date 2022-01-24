@@ -1,5 +1,6 @@
 package com.maskalenchyk.education_helper.application;
 
+import com.maskalenchyk.education_helper.command.user.SignInCommand;
 import com.maskalenchyk.education_helper.command.view.*;
 import com.maskalenchyk.education_helper.core.BeanRegistry;
 import com.maskalenchyk.education_helper.core.BeanRegistryImpl;
@@ -103,6 +104,8 @@ public class ApplicationContext implements BeanRegistry {
         registerBean(ServicePageCommand.class);
         registerBean(AuthorizationPageCommand.class);
         registerBean(GuaranteesPageCommand.class);
+
+        registerBean(SignInCommand.class);
     }
 
     private void registerDataSource() {

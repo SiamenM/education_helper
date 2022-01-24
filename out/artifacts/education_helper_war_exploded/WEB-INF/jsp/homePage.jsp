@@ -107,7 +107,7 @@
                 <tr>
                     <td class="text-center"><img src="<c:url value="/static/img/icons/listStructure.svg"/>" width="40"
                                                  class="pt-4" alt="">
-                        <p class="text"><fmt:message key="mainpage.text.advantage4"/></p>
+                        <p class="text"><fmt:message key="mainpage.text.advantage4"/> ПОМЕНЯТЬ ИКОНКУ</p>
                     </td>
                     <td class="text-center"><img src="<c:url value="/static/img/icons/graphProfit.svg"/>" width="40"
                                                  class="pt-4" alt="">
