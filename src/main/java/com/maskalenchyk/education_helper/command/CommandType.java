@@ -15,6 +15,7 @@ public enum CommandType {
     VIEW_FORM_TASK_PAGE,
     VIEW_SERVICES_PAGE,
     VIEW_AUTHORIZATION_PAGE,
+    REGISTRATION_USER,
     SIGN_IN,
     LOGOUT;
 
