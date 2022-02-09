@@ -4,6 +4,7 @@ import com.maskalenchyk.education_helper.command.AbstractCommand;
 import com.maskalenchyk.education_helper.command.CommandException;
 import com.maskalenchyk.education_helper.core.Bean;
 import com.maskalenchyk.education_helper.entity.UserAccount;
+import com.maskalenchyk.education_helper.entity.UserRole;
 import com.maskalenchyk.education_helper.service.UserService;
 import com.maskalenchyk.education_helper.service.exceptions.ServiceException;
 import org.apache.log4j.Logger;
@@ -34,12 +35,15 @@ public class RegistrationUserCommand extends AbstractCommand {
         String userName = request.getParameter(USER_NAME);
         String userEmail = request.getParameter(USER_EMAIL);
         String userPhone = request.getParameter(USER_PHONE);
-
+        UserRole userRole = UserRole.valueOf(request.getParameter(USER_ROLE));
+        String userAdditionalInfo = request.getParameter(USER_ADDITIONAL_INFO);
         try {
 
             if (isUserExist(userEmail) || isUserExist(userPhone)) {
 
             }
+
+//            UserAccount newUser =
         } catch (ServiceException e) {
             e.printStackTrace();
         }
