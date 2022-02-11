@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `education_helper`.`file` (
   `file_price` DECIMAL(10,2) NOT NULL,
   `description` VARCHAR(5000) NOT NULL,
   `add_date` TIMESTAMP(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `file_is_available` TINYINT NOT NULL DEFAULT 0,
+  `file_is_available` TINYINT NOT NULL DEFAULT '0',
   `disciple_id` BIGINT UNSIGNED NOT NULL,
   `type_of_paper_id` BIGINT UNSIGNED NOT NULL,
   `user_author_id` BIGINT UNSIGNED NOT NULL,
@@ -86,13 +86,14 @@ CREATE TABLE IF NOT EXISTS `education_helper`.`comment_for_file` (
   `comment_for_file_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `comment` VARCHAR(5000) NULL DEFAULT NULL,
   `grade` TINYINT UNSIGNED NOT NULL,
-  `file_id` BIGINT UNSIGNED NOT NULL,
-  PRIMARY KEY (`comment_for_file_id`, `file_id`),
+  `comment_add_date` TIMESTAMP(6) NOT NULL,
+  `comment_file_id` BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (`comment_for_file_id`, `comment_file_id`),
   UNIQUE INDEX `comment_for_file_id` (`comment_for_file_id` ASC) VISIBLE,
   INDEX `comment_for_file_id_index` (`comment_for_file_id` ASC) VISIBLE,
-  INDEX `file_id_index` (`file_id` ASC) VISIBLE,
+  INDEX `file_id_index` (`comment_file_id` ASC) VISIBLE,
   CONSTRAINT `fk_comment_for_file`
-    FOREIGN KEY (`file_id`)
+    FOREIGN KEY (`comment_file_id`)
     REFERENCES `education_helper`.`file` (`id_file`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
@@ -111,6 +112,20 @@ CREATE TABLE IF NOT EXISTS `education_helper`.`role` (
   UNIQUE INDEX `role_name` (`role_name` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `education_helper`.`step`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `education_helper`.`step` (
+  `step_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `step_name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`step_id`),
+  UNIQUE INDEX `step_id_UNIQUE` (`step_id` ASC) VISIBLE,
+  UNIQUE INDEX `step_name_UNIQUE` (`step_name` ASC) VISIBLE)
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -139,7 +154,8 @@ CREATE TABLE IF NOT EXISTS `education_helper`.`user_account` (
   `user_account_phone` VARCHAR(20) NOT NULL,
   `user_account_password` VARCHAR(100) NOT NULL,
   `user_account_registration_date` TIMESTAMP(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `user_account_is_available` TINYINT NOT NULL DEFAULT 0,
+  `user_account_is_available` TINYINT NOT NULL DEFAULT '0',
+  `user_account_info` VARCHAR(300) NULL DEFAULT NULL,
   `wallet_wallet_id` BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY (`user_account_id`, `wallet_wallet_id`),
   UNIQUE INDEX `user_account_id` (`user_account_id` ASC) VISIBLE,
@@ -150,9 +166,7 @@ CREATE TABLE IF NOT EXISTS `education_helper`.`user_account` (
   INDEX `fk_user_account_wallet1_idx` (`wallet_wallet_id` ASC) VISIBLE,
   CONSTRAINT `fk_user_account_wallet1`
     FOREIGN KEY (`wallet_wallet_id`)
-    REFERENCES `education_helper`.`wallet` (`wallet_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `education_helper`.`wallet` (`wallet_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4

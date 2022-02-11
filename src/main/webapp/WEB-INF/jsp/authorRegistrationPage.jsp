@@ -49,8 +49,8 @@
                                    name="${RegistrationUserCommand.USER_PHONE}" required>
                             <div class="bg-light p-3" style="max-height:200px;overflow:auto">
                                 <c:forEach var="disciple" items="${Disciple.values()}">
-                                    <label class="display-7 d-block"><input type="checkbox" name="science[]"
-                                                                            value="490">
+                                    <label class="display-7 d-block"><input type="checkbox" name="disciple"
+                                                                            value="<c:out value="${disciple.name()}"/>">
                                         <fmt:message key="${disciple.name()}"/>
                                     </label>
                                 </c:forEach>
