@@ -7,11 +7,13 @@ import com.maskalenchyk.education_helper.entity.UserAccount;
 import com.maskalenchyk.education_helper.entity.UserRole;
 import com.maskalenchyk.education_helper.service.UserService;
 import com.maskalenchyk.education_helper.service.exceptions.ServiceException;
+import com.maskalenchyk.education_helper.service.exceptions.UserServiceException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.LinkedList;
+import java.util.List;
 
 @Bean(name = "REGISTRATION_USER")
 public class RegistrationUserCommand extends AbstractCommand {
@@ -23,7 +25,7 @@ public class RegistrationUserCommand extends AbstractCommand {
     public static final String USER_SPECIALIZATION = "userSpecialization";
     public static final String USER_ADDITIONAL_INFO = "userAdditionalInfo";
     public static final String USER_ROLE = "userRole";
-    public static final String REGISTRATION_ERROR_MESSAGE = "errorMessage";
+    public static final String REGISTRATION_RESULT = "errorMessage";
 
     private final UserService userService;
 
@@ -38,20 +40,26 @@ public class RegistrationUserCommand extends AbstractCommand {
         String userPhone = request.getParameter(USER_PHONE);
         String[] disciples = request.getParameterValues(USER_SPECIALIZATION);
         UserRole userRole = UserRole.valueOf(request.getParameter(USER_ROLE));
+        List<UserRole> userRoleList = new LinkedList<>();
+        userRoleList.add(userRole);
         String userAdditionalInfo = request.getParameter(USER_ADDITIONAL_INFO);
         try {
-
-            if (isUserExist(userEmail) || isUserExist(userPhone)) {
-
+            UserAccount registeredUser = userService.createUserAccount(userEmail, userPhone, userName, userRoleList);
+            LOGGER.info("User " + registeredUser.getId() + " have registered.");
+        } catch (UserServiceException e) {
+            LOGGER.info("Registration failed for " + userEmail + ", " + userPhone);
+            String errorMessage;
+            switch(e.getErrorCode()){
+                case UserServiceException.EMAIL_ALREADY_EXISTS:
+                    errorMessage = "User with email " + email + " already exists";
+                    break;
+                    case UserServiceException.PHONE_NUMBER_ALREADY_EXISTS:
+                        errorMessage = "User with phone number " + phoneNumber + " already exists";
+                        break;
             }
-
-            UserAccount newUser = new UserAccount();
-            newUser.setName(userName);
-            newUser.setEmail(userEmail);
-            newUser.setPhone(userPhone);
-            newUser.setUserRoles(new LinkedList<UserRole>(userRole));
-        } catch (ServiceException e) {
             e.printStackTrace();
+        } catch (ServiceException e) {
+
         }
     }
 
