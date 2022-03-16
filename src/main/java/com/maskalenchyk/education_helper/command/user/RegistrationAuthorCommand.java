@@ -12,24 +12,30 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Bean(name = "REGISTRATION_USER")
-public class RegistrationUserCommand extends AbstractCommand {
+@Bean(name = "REGISTRATION_AUTHOR")
+public class RegistrationAuthorCommand extends AbstractCommand {
 
-    public static final Logger LOGGER = Logger.getLogger(RegistrationUserCommand.class);
+    public static final Logger LOGGER = Logger.getLogger(RegistrationAuthorCommand.class);
     public static final String USER_NAME = "userName";
     public static final String USER_EMAIL = "userEmail";
     public static final String USER_PHONE = "userPhone";
     public static final String USER_SPECIALIZATION = "userSpecialization";
     public static final String USER_ADDITIONAL_INFO = "userAdditionalInfo";
     public static final String USER_ROLE = "userRole";
-    public static final String REGISTRATION_RESULT = "errorMessage";
+    public static final String REGISTRATION_RESULT_ERROR = "errorMessage";
+    public static final String ERROR_CODE = "errorCode";
+    private static final String EMAIL_ERROR_VALUE = "emailError";
+    private static final String PHONE_ERROR_VALUE = "phoneError";
+    private static final String DEFAULT_ERROR_VALUE = "defaultError";
 
     private final UserService userService;
 
-    public RegistrationUserCommand(UserService userService) {
+    public RegistrationAuthorCommand(UserService userService) {
         this.userService = userService;
     }
 
@@ -38,28 +44,37 @@ public class RegistrationUserCommand extends AbstractCommand {
         String userName = request.getParameter(USER_NAME);
         String userEmail = request.getParameter(USER_EMAIL);
         String userPhone = request.getParameter(USER_PHONE);
-        String[] disciples = request.getParameterValues(USER_SPECIALIZATION);
+        String[] disciplesValues = request.getParameterValues(USER_SPECIALIZATION);
         UserRole userRole = UserRole.valueOf(request.getParameter(USER_ROLE));
         List<UserRole> userRoleList = new LinkedList<>();
         userRoleList.add(userRole);
         String userAdditionalInfo = request.getParameter(USER_ADDITIONAL_INFO);
+        String disciples = Arrays.stream(disciplesValues).map(String::valueOf).collect(Collectors.joining(","));
+        userAdditionalInfo = userAdditionalInfo.concat(disciples);
         try {
             UserAccount registeredUser = userService.createUserAccount(userEmail, userPhone, userName, userRoleList);
             LOGGER.info("User " + registeredUser.getId() + " have registered.");
         } catch (UserServiceException e) {
             LOGGER.info("Registration failed for " + userEmail + ", " + userPhone);
             String errorMessage;
-            switch(e.getErrorCode()){
+            switch (e.getErrorCode()) {
                 case UserServiceException.EMAIL_ALREADY_EXISTS:
-                    errorMessage = "User with email " + email + " already exists";
+                    errorMessage = EMAIL_ERROR_VALUE;
+                    request.setAttribute(ERROR_CODE, EMAIL_ERROR_VALUE);
                     break;
-                    case UserServiceException.PHONE_NUMBER_ALREADY_EXISTS:
-                        errorMessage = "User with phone number " + phoneNumber + " already exists";
-                        break;
+                case UserServiceException.PHONE_NUMBER_ALREADY_EXISTS:
+                    errorMessage = PHONE_ERROR_VALUE;
+                    request.setAttribute(ERROR_CODE, PHONE_ERROR_VALUE);
+                    break;
+                default:
+                    errorMessage = DEFAULT_ERROR_VALUE;
+                    request.setAttribute(ERROR_CODE, DEFAULT_ERROR_VALUE);
+                    break;
             }
-            e.printStackTrace();
+            request.setAttribute(REGISTRATION_RESULT_ERROR, errorMessage);
+            forward(request, response, "/WEB-INF/jsp/authorRegistrationPage");
         } catch (ServiceException e) {
-
+            forward(request, response, "/WEB-INF/jsp/errorPage");
         }
     }
 

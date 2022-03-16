@@ -36,9 +36,9 @@ public class LocaleFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
         String locale = (String) session.getAttribute(ApplicationConstants.LOCALE_PARAMETER);
         if (locale == null) {
-            String browserLocale = request.getLocale().getLanguage();
-            if (supportedLocales.contains(browserLocale)) {
-                session.setAttribute(ApplicationConstants.LOCALE_PARAMETER, browserLocale);
+            locale = request.getLocale().getLanguage();
+            if (supportedLocales.contains(locale)) {
+                session.setAttribute(ApplicationConstants.LOCALE_PARAMETER, locale);
             } else {
                 session.setAttribute(ApplicationConstants.LOCALE_PARAMETER, defaultLocale);
             }
