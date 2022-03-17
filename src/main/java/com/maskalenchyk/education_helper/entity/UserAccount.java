@@ -12,6 +12,7 @@ public class UserAccount implements Entity {
     private String password;
     private Long registrationDate;
     private Boolean isAvailable;
+    private String additionalInformation;
     private List<UserRole> userRoles;
     private Wallet wallet;
 
@@ -26,6 +27,7 @@ public class UserAccount implements Entity {
     public Long getId() {
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -85,6 +87,14 @@ public class UserAccount implements Entity {
 
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
+    }
+
+    public String getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
 
     @Override

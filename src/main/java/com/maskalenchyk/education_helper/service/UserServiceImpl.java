@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
+import java.time.Instant;
 import java.util.List;
 
 @Bean
@@ -74,7 +75,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     //@Transactional
-    public UserAccount createUserAccount(String email, String phoneNumber, String name, List<UserRole> userRoles) throws ServiceException {
+    public UserAccount createUserAccount(String email, String phoneNumber, String name, List<UserRole> userRoles, String additionalInformation)
+            throws ServiceException {
         try {
             if (getByLogin(email) != null) {
                 String errorMessage = "User with " + email + " already exists";
@@ -94,6 +96,9 @@ public class UserServiceImpl implements UserService {
             userAccount.setName(name);
             userAccount.setPassword(digestPassword);
             userAccount.setUserRoles(userRoles);
+            userAccount.setAvailable(true);
+            userAccount.setRegistrationDate(Instant.now().toEpochMilli());
+            userAccount.setAdditionalInformation(additionalInformation);
             Wallet walletNewUser = walletService.createNewWallet(new BigDecimal(0));
             userAccount.setWallet(walletNewUser);
             emailService.sendRegistrationEmail(email, password);

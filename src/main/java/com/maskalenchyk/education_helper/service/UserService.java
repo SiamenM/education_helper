@@ -14,7 +14,8 @@ public interface UserService {
 
     UserAccount signIn(String login, String password) throws ServiceException;
 
-    UserAccount createUserAccount(String email, String phoneNumber, String name,  List<UserRole> userRoles) throws ServiceException;
+    UserAccount createUserAccount(String email, String phoneNumber, String name, List<UserRole> userRoles, String additionalInformation)
+            throws ServiceException;
 
     List<UserAccount> findAll() throws ServiceException;
 

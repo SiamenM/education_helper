@@ -9,10 +9,7 @@ import com.maskalenchyk.education_helper.entity.Wallet;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +18,7 @@ import java.util.List;
 public class UserAccountDaoImpl implements UserAccountDao {
     private static final String QUERY_SELECT_ALL =
             "SELECT user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone,user.user_account_password," +
-                    "            user.user_account_registration_date, user.user_account_is_available," +
+                    "            user.user_account_registration_date, user.user_account_is_available, user_user_account_info," +
                     "            user.id_wallet, wallet.wallet_amount, role.role_name" +
                     "            FROM user_account AS user" +
                     "            JOIN user_account_has_role AS relation  ON relation.user_account_id=user.user_account_id" +
@@ -38,7 +35,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
                     "WHERE user.user_account_id=?;";
     private static final String QUERY_SELECT_USER_BY_EMAIL =
             "SELECT user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone,user.user_account_password," +
-                    "            user.user_account_registration_date," +
+                    "            user.user_account_registration_date, user.user_account_is_available, user_user_account_info," +
                     "            user.id_wallet, wallet.wallet_amount, role.role_name" +
                     "            FROM user_account AS user" +
                     "            JOIN user_account_has_role AS relation ON relation.user_account_id=user.user_account_id" +
@@ -48,7 +45,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 
     private static final String QUERY_SELECT_USER_BY_PHONE =
             "SELECT user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone,user.user_account_password," +
-                    "            user.user_account_registration_date, user.user_account_is_available" +
+                    "            user.user_account_registration_date, user.user_account_is_available, user_user_account_info," +
                     "            user.id_wallet, wallet.wallet_amount, role.role_name" +
                     "            FROM user_account AS user" +
                     "            JOIN user_account_has_role AS relation ON relation.user_account_id=user.user_account_id" +
@@ -56,8 +53,8 @@ public class UserAccountDaoImpl implements UserAccountDao {
                     "            JOIN wallet ON wallet.wallet_id=user.id_wallet" +
                     "            WHERE user.user_account_phone=?;";
     private static final String QUERY_UPDATE_USER_DATA =
-            "UPDATE user_account SET user_account_name=?,user_account_email=?,user_account_phone=?, user_account_password=?, user_account_is_available=?" +
-                    "WHERE user_account_id=?;";
+            "UPDATE user_account SET user_account_name=?,user_account_email=?,user_account_phone=?, user_account_password=?, user_account_is_available=?, " +
+                    "user_user_account_info=? WHERE user_account_id=?;";
     private static final String QUERY_DELETE_USER = "DELETE FROM user_account WHERE user_account_id=?;";
     private static final String QUERY_ASSIGN_USER_ROLE =
             "INSERT into user_account_has_role (user_account_id,role_id ) VALUES(?,(SELECT role_id FROM role WHERE role_name=?));";
@@ -65,8 +62,9 @@ public class UserAccountDaoImpl implements UserAccountDao {
             "DELETE FROM user_account_has_role WHERE user_account_id = ? and role_id =(SELECT role_id FROM role WHERE role_name=?);";
     private static final String QUERY_INSERT_NEW_USER =
             "INSERT INTO wallet VALUES ();" +
-                    "INSERT INTO user_account (user_account_name,user_account_email,user_account_phone,user_account_password,id_wallet)" +
-                    "VALUES (?,?,?,?,?);" +
+                    "INSERT INTO user_account (user_account_name,user_account_email,user_account_phone,user_account_password," +
+                    "user_account_registration_date, user_account_is_available,user_account_info, id_wallet)" +
+                    "VALUES (?,?,?,?,?,?,?,?,?);" +
                     "INSERT INTO user_account_has_role VALUES (last_insert_id()," +
                     "(SELECT role_id FROM role WHERE role_name='user'));";
 
@@ -90,6 +88,10 @@ public class UserAccountDaoImpl implements UserAccountDao {
             statement.setString(++i, entity.getEmail());
             statement.setString(++i, entity.getPhone());
             statement.setString(++i, entity.getPassword());
+            Timestamp registrationDate = new Timestamp(entity.getRegistrationDate());
+            statement.setTimestamp(++i, registrationDate);
+            statement.setBoolean(++i, entity.getAvailable());
+            statement.setString(++i, entity.getAdditionalInformation());
             statement.setLong(++i, entity.getWallet().getId());
             statement.executeUpdate();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -115,8 +117,8 @@ public class UserAccountDaoImpl implements UserAccountDao {
             statement.setString(++i, entity.getEmail());
             statement.setString(++i, entity.getPhone());
             statement.setString(++i, entity.getPassword());
-            statement.setLong(++i, entity.getId());
-            statement.setBoolean(++i,entity.getAvailable());
+            statement.setBoolean(++i, entity.getAvailable());
+            statement.setString(++i,entity.getAdditionalInformation());
             statement.executeUpdate();
         } catch (ConnectionException | SQLException e) {
             LOGGER.error(MessageFormat.format("Updating user failed.{0}", e.getMessage()));
@@ -243,8 +245,9 @@ public class UserAccountDaoImpl implements UserAccountDao {
         userAccount.setEmail(resultSet.getString("user_account_email"));
         userAccount.setPhone(resultSet.getString("user_account_phone"));
         userAccount.setPassword(resultSet.getString("user_account_password"));
-        userAccount.setAvailable(resultSet.getBoolean("user_account_is_available"));
         userAccount.setRegistrationDate(resultSet.getTimestamp("user_account_registration_date").getTime());
+        userAccount.setAvailable(resultSet.getBoolean("user_account_is_available"));
+        userAccount.setAdditionalInformation(resultSet.getString("user_user_account_info"));
 
         Wallet wallet = new Wallet();
         wallet.setId(resultSet.getLong("wallet_id"));

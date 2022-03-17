@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
 <%@ page import="com.maskalenchyk.education_helper.application.ApplicationConstants" %>
 <%@ page import="com.maskalenchyk.education_helper.command.user.RegistrationAuthorCommand" %>
 <%@ page import="com.maskalenchyk.education_helper.entity.Disciple" %>
@@ -38,7 +39,7 @@
                                         <fmt:message key="message.invalidEmail"/>
                                     </div>
                                 </c:when>
-                                <c:when test="${requestScope.get(RegistrationAuthorCommand.ERROR_CODE).equals(RegistrationAuthorCommand.PHONE_ERROR_VALUE}">
+                                <c:when test="${requestScope.get(RegistrationAuthorCommand.ERROR_CODE).equals(RegistrationAuthorCommand.PHONE_ERROR_VALUE)}">
                                     <div class="alert alert-danger">
                                         <fmt:message key="message.invalidPhone"/>
                                     </div>
@@ -46,14 +47,14 @@
                                 <c:otherwise>
                                     <c:if test="${not empty requestScope.get(RegistrationAuthorCommand.ERROR_CODE)}">
                                         <div class="alert alert-danger">
-
+                                            <fmt:message key="message.invalidInput"/>
                                         </div>
                                     </c:if>
                                 </c:otherwise>
                             </c:choose>
-                            <c:if test="${not empty param.get(RegistrationAuthorCommand.REGISTRATION_RESULT_ERROR)}">
-                                <div class="alert alert-danger">
-                                    <fmt:message key="message.invalidInput"/>
+                            <c:if test="${not empty param.get(RegistrationAuthorCommand.REGISTRATION_RESPONSE)}">
+                                <div class="alert alert-success">
+                                    <fmt:message key="message.successfulRegistered"/>
                                 </div>
                             </c:if>
                             <form class="form-horizontal">
@@ -114,7 +115,7 @@
                                 <div class="col text-center">
                                     <input type="hidden" name="${RegistrationAuthorCommand.USER_ROLE}"
                                            value="${UserRole.AUTHOR}">
-                                    <input type="hidden" name="${ApplicationConstants.COMMAND_NAME_PARAMETER}">
+                                    <input type="hidden" name="${ApplicationConstants.COMMAND_NAME_PARAMETER}" value="${CommandType.REGISTRATION_AUTHOR}">
                                     <input class="btn btn-rounded mb-4 purple-gradient" type="submit"
                                            onclick="message('<fmt:message key="message.msgAfterSend"/>')"
                                            value="<fmt:message key="button.send"/>">

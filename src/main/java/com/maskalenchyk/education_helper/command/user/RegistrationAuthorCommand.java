@@ -29,9 +29,10 @@ public class RegistrationAuthorCommand extends AbstractCommand {
     public static final String USER_ROLE = "userRole";
     public static final String REGISTRATION_RESULT_ERROR = "errorMessage";
     public static final String ERROR_CODE = "errorCode";
-    private static final String EMAIL_ERROR_VALUE = "emailError";
-    private static final String PHONE_ERROR_VALUE = "phoneError";
-    private static final String DEFAULT_ERROR_VALUE = "defaultError";
+    public static final String EMAIL_ERROR_VALUE = "emailError";
+    public static final String PHONE_ERROR_VALUE = "phoneError";
+    public static final String DEFAULT_ERROR_VALUE = "defaultError";
+    public static final String REGISTRATION_RESPONSE = "registrationResponse";
 
     private final UserService userService;
 
@@ -52,8 +53,13 @@ public class RegistrationAuthorCommand extends AbstractCommand {
         String disciples = Arrays.stream(disciplesValues).map(String::valueOf).collect(Collectors.joining(","));
         userAdditionalInfo = userAdditionalInfo.concat(disciples);
         try {
-            UserAccount registeredUser = userService.createUserAccount(userEmail, userPhone, userName, userRoleList);
+            UserAccount registeredUser = userService.createUserAccount(userEmail, userPhone, userName, userRoleList, userAdditionalInfo);
             LOGGER.info("User " + registeredUser.getId() + " have registered.");
+            request.setAttribute(REGISTRATION_RESPONSE,"1");
+            forward(request, response, "/WEB-INF/jsp/authorRegistrationPage");
+
+            //результат успешного выполнения
+
         } catch (UserServiceException e) {
             LOGGER.info("Registration failed for " + userEmail + ", " + userPhone);
             String errorMessage;
