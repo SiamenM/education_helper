@@ -18,7 +18,7 @@ import java.util.List;
 public class UserAccountDaoImpl implements UserAccountDao {
     private static final String QUERY_SELECT_ALL =
             "SELECT user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone,user.user_account_password," +
-                    "            user.user_account_registration_date, user.user_account_is_available, user_user_account_info," +
+                    "            user.user_account_registration_date, user.user_account_is_available, user.user_account_info," +
                     "            user.id_wallet, wallet.wallet_amount, role.role_name" +
                     "            FROM user_account AS user" +
                     "            JOIN user_account_has_role AS relation  ON relation.user_account_id=user.user_account_id" +
@@ -27,16 +27,16 @@ public class UserAccountDaoImpl implements UserAccountDao {
 
     private static final String QUERY_SELECT_USER_BY_ID =
             "    SELECT user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone, user.user_account_password," +
-                    "user.user_account_registration_date, user.user_account_is_available,wallet.wallet_id,wallet.wallet_amount,role.role_name" +
-                    "FROM user_account AS user" +
-                    "JOIN wallet ON wallet.wallet_id=user.id_wallet" +
-                    "JOIN user_account_has_role ON user.user_account_id=user_account_has_role.user_account_id" +
-                    "JOIN role ON user_account_has_role.role_id=role.role_id" +
-                    "WHERE user.user_account_id=?;";
+                    "user.user_account_registration_date, user.user_account_is_available,user.user_account_info,wallet.wallet_id,wallet.wallet_amount,role.role_name" +
+                    "            FROM user_account AS user" +
+                    "            JOIN wallet ON wallet.wallet_id=user.id_wallet" +
+                    "            JOIN user_account_has_role ON user.user_account_id=user_account_has_role.user_account_id" +
+                    "            JOIN role ON user_account_has_role.role_id=role.role_id" +
+                    "            WHERE user.user_account_id=?;";
     private static final String QUERY_SELECT_USER_BY_EMAIL =
             "SELECT user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone,user.user_account_password," +
-                    "            user.user_account_registration_date, user.user_account_is_available, user_user_account_info," +
-                    "            user.id_wallet, wallet.wallet_amount, role.role_name" +
+                    "user.user_account_registration_date,user.user_account_is_available,user.user_account_info," +
+                    "user.id_wallet, wallet.wallet_amount, role.role_name" +
                     "            FROM user_account AS user" +
                     "            JOIN user_account_has_role AS relation ON relation.user_account_id=user.user_account_id" +
                     "            JOIN role ON relation.role_id=role.role_id" +
@@ -45,7 +45,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
 
     private static final String QUERY_SELECT_USER_BY_PHONE =
             "SELECT user.user_account_id,user.user_account_name,user.user_account_email,user.user_account_phone,user.user_account_password," +
-                    "            user.user_account_registration_date, user.user_account_is_available, user_user_account_info," +
+                    "            user.user_account_registration_date, user.user_account_is_available, user.user_account_info," +
                     "            user.id_wallet, wallet.wallet_amount, role.role_name" +
                     "            FROM user_account AS user" +
                     "            JOIN user_account_has_role AS relation ON relation.user_account_id=user.user_account_id" +
@@ -118,7 +118,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
             statement.setString(++i, entity.getPhone());
             statement.setString(++i, entity.getPassword());
             statement.setBoolean(++i, entity.getAvailable());
-            statement.setString(++i,entity.getAdditionalInformation());
+            statement.setString(++i, entity.getAdditionalInformation());
             statement.executeUpdate();
         } catch (ConnectionException | SQLException e) {
             LOGGER.error(MessageFormat.format("Updating user failed.{0}", e.getMessage()));
@@ -247,7 +247,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
         userAccount.setPassword(resultSet.getString("user_account_password"));
         userAccount.setRegistrationDate(resultSet.getTimestamp("user_account_registration_date").getTime());
         userAccount.setAvailable(resultSet.getBoolean("user_account_is_available"));
-        userAccount.setAdditionalInformation(resultSet.getString("user_user_account_info"));
+        userAccount.setAdditionalInformation(resultSet.getString("user_account_info"));
 
         Wallet wallet = new Wallet();
         wallet.setId(resultSet.getLong("wallet_id"));

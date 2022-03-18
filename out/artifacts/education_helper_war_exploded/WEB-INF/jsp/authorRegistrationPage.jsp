@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
 <%@ page import="com.maskalenchyk.education_helper.application.ApplicationConstants" %>
+<%@ page import="com.maskalenchyk.education_helper.command.CommandType" %>
 <%@ page import="com.maskalenchyk.education_helper.command.user.RegistrationAuthorCommand" %>
 <%@ page import="com.maskalenchyk.education_helper.entity.Disciple" %>
 <%@ page import="com.maskalenchyk.education_helper.entity.UserRole" %>
@@ -74,7 +74,8 @@
                                        name="${RegistrationAuthorCommand.USER_PHONE}" required>
                                 <div class="bg-light p-3" style="max-height:200px;overflow:auto">
                                     <c:forEach var="disciple" items="${Disciple.values()}">
-                                        <label class="display-7 d-block"><input type="checkbox" name="disciple"
+                                        <label class="display-7 d-block"><input type="checkbox"
+                                                                                name="${RegistrationAuthorCommand.USER_SPECIALIZATION}"
                                                                                 value="<c:out value="${disciple.name()}"/>">
                                             <fmt:message key="${disciple.name()}"/>
                                         </label>
@@ -115,7 +116,8 @@
                                 <div class="col text-center">
                                     <input type="hidden" name="${RegistrationAuthorCommand.USER_ROLE}"
                                            value="${UserRole.AUTHOR}">
-                                    <input type="hidden" name="${ApplicationConstants.COMMAND_NAME_PARAMETER}" value="${CommandType.REGISTRATION_AUTHOR}">
+                                    <input type="hidden" name="${ApplicationConstants.COMMAND_NAME_PARAMETER}"
+                                           value="${CommandType.REGISTRATION_AUTHOR}">
                                     <input class="btn btn-rounded mb-4 purple-gradient" type="submit"
                                            onclick="message('<fmt:message key="message.msgAfterSend"/>')"
                                            value="<fmt:message key="button.send"/>">

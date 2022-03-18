@@ -49,13 +49,16 @@ public class RegistrationAuthorCommand extends AbstractCommand {
         UserRole userRole = UserRole.valueOf(request.getParameter(USER_ROLE));
         List<UserRole> userRoleList = new LinkedList<>();
         userRoleList.add(userRole);
+        userRoleList.add(UserRole.USER);
         String userAdditionalInfo = request.getParameter(USER_ADDITIONAL_INFO);
-        String disciples = Arrays.stream(disciplesValues).map(String::valueOf).collect(Collectors.joining(","));
-        userAdditionalInfo = userAdditionalInfo.concat(disciples);
+        if (disciplesValues != null) {
+            String disciples = Arrays.stream(disciplesValues).map(String::valueOf).collect(Collectors.joining(","));
+            userAdditionalInfo = userAdditionalInfo.concat(disciples);
+        }
         try {
             UserAccount registeredUser = userService.createUserAccount(userEmail, userPhone, userName, userRoleList, userAdditionalInfo);
             LOGGER.info("User " + registeredUser.getId() + " have registered.");
-            request.setAttribute(REGISTRATION_RESPONSE,"1");
+            request.setAttribute(REGISTRATION_RESPONSE, "1");
             forward(request, response, "/WEB-INF/jsp/authorRegistrationPage");
 
             //результат успешного выполнения
