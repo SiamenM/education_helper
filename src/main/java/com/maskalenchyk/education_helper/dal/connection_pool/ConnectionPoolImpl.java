@@ -2,7 +2,8 @@ package com.maskalenchyk.education_helper.dal.connection_pool;
 
 import com.maskalenchyk.education_helper.application.ApplicationConstants;
 import com.maskalenchyk.education_helper.core.Bean;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.Proxy;
@@ -20,7 +21,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Bean
 public class ConnectionPoolImpl implements ConnectionPool {
 
-    private static final Logger LOGGER = Logger.getLogger(ConnectionPoolImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionPoolImpl.class);
     private static final Lock instanceLock = new ReentrantLock();
     private static ConnectionPoolImpl instance;
     private BlockingQueue<Connection> availableConnections;
@@ -72,16 +73,16 @@ public class ConnectionPoolImpl implements ConnectionPool {
     }
 
     private void releaseConnection(Connection connection) throws ConnectionPoolException {
-        if(usedConnections.contains(connection)){
-            try{
+        if (usedConnections.contains(connection)) {
+            try {
                 usedConnections.remove(connection);
                 availableConnections.put(connection);
-            }catch (InterruptedException e) {
-                LOGGER.error(e);
+            } catch (InterruptedException e) {
+                LOGGER.error(e.getMessage());
                 Thread.currentThread().interrupt();
                 throw new ConnectionPoolException("Unsuccessful releasing connection");
             }
-        }else {
+        } else {
             throw new ConnectionPoolException("Try to close not a pool connection");
         }
     }
@@ -114,10 +115,10 @@ public class ConnectionPoolImpl implements ConnectionPool {
             initConnectionQueue(properties);
             LOGGER.info("Connection pool was successfully initialized");
         } catch (IOException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
             throw new FatalConnectionPoolException("Property file cannot be found", e);
         } catch (ClassNotFoundException e) {
-            LOGGER.error(e);
+            LOGGER.error(e.getMessage());
             throw new FatalConnectionPoolException("Driver cannot be found", e);
         }
     }
@@ -136,7 +137,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
                     Connection connection = DriverManager.getConnection(url + databaseName, userName, password);
                     availableConnections.add(connection);
                 } catch (SQLException e) {
-                    LOGGER.error(e);
+                    LOGGER.error(e.getMessage());
                     throw new FatalConnectionPoolException("Cannot create connection " + e);
                 }
             }

@@ -7,7 +7,8 @@ import com.maskalenchyk.education_helper.dal.transaction_manager.Transactional;
 import com.maskalenchyk.education_helper.entity.Wallet;
 import com.maskalenchyk.education_helper.service.exceptions.ServiceException;
 import com.maskalenchyk.education_helper.service.exceptions.WalletException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
@@ -15,7 +16,7 @@ import java.text.MessageFormat;
 @Bean
 public class WalletServiceImpl implements WalletService {
 
-    private static final Logger LOGGER = Logger.getLogger(WalletServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WalletServiceImpl.class);
     private final WalletDao walletDao;
 
     public WalletServiceImpl(WalletDao walletDao) {
@@ -30,7 +31,7 @@ public class WalletServiceImpl implements WalletService {
             walletDao.update(updatedWallet);
             return updatedWallet;
         } catch (DaoException e) {
-            LOGGER.error(MessageFormat.format("Update amount exception database exception: {0}", e.getMessage()));
+            LOGGER.error(MessageFormat.format("Update amount exception database exception: {}", e.getMessage()));
             throw new ServiceException(e.getMessage(), e);
         }
     }

@@ -3,7 +3,8 @@ package com.maskalenchyk.education_helper.service;
 import com.maskalenchyk.education_helper.application.ApplicationConstants;
 import com.maskalenchyk.education_helper.core.Bean;
 import com.maskalenchyk.education_helper.service.exceptions.ServiceException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -21,7 +22,7 @@ public class EmailServiceImpl implements EmailService {
                     "Your login = ? \n" +
                     "Your password: ? \n" +
                     "Detail about your request you can see in your private cabinet.";
-    private static final Logger LOGGER = Logger.getLogger(EmailServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);
     private boolean isInitialized = false;
     private Session session;
     private String hostMail;
@@ -36,7 +37,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             Transport.send(message);
         } catch (MessagingException e) {
-            LOGGER.error(MessageFormat.format("Mail sending failed.{0}", e.getMessage()));
+            LOGGER.error("Mail sending failed.{}", e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
     }
@@ -50,7 +51,7 @@ public class EmailServiceImpl implements EmailService {
             message.setText(MessageFormat.format(REGISTRATION_MESSAGE, recipient, recipientPassword));
             return message;
         } catch (MessagingException e) {
-            LOGGER.error(MessageFormat.format("Mail message generating failed.{0}", e.getMessage()));
+            LOGGER.error("Mail message generating failed.{}", e.getMessage());
             throw new ServiceException(e.getMessage(), e);
         }
     }

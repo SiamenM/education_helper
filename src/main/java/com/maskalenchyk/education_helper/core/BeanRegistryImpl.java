@@ -1,6 +1,7 @@
 package com.maskalenchyk.education_helper.core;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class BeanRegistryImpl implements BeanRegistry {
 
-    private static final Logger LOGGER = Logger.getLogger(BeanRegistryImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BeanRegistryImpl.class);
     private BeanBuilder beanBuilder = new BeanBuilder();
     private Set<RegistryInfo> registeredBeansInfo = new HashSet<>();
 
@@ -217,15 +218,14 @@ public class BeanRegistryImpl implements BeanRegistry {
                     interceptor.success(proxy, service, method, args);
                 }
                 return invoked;
-            }catch(InvocationTargetException e){
+            } catch (InvocationTargetException e) {
                 throw e.getTargetException();
-            }
-                        catch (Exception e) {
+            } catch (Exception e) {
                 for (BeanInterceptor interceptor : interceptors) {
                     interceptor.fail(proxy, service, method, args);
                 }
-                LOGGER.error( e.getMessage(),e);
-                throw new ApplicationCoreException(e.getMessage(),e);
+                LOGGER.error(e.getMessage(), e);
+                throw new ApplicationCoreException(e.getMessage(), e);
 
             }
 

@@ -4,8 +4,8 @@ import com.maskalenchyk.education_helper.core.Bean;
 import com.maskalenchyk.education_helper.dal.connection.ConnectionException;
 import com.maskalenchyk.education_helper.dal.connection_manager.ConnectionManager;
 import com.maskalenchyk.education_helper.entity.Wallet;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -26,7 +26,7 @@ public class WalletDaoImpl implements WalletDao {
     private static final String QUERY_INSERT = "INSERT INTO wallet(wallet_amount) VALUES(?);";
     private static final String QUERY_INSERT_EMPTY_WALLET = "INSERT INTO wallet(wallet_amount) VALUES(?);";
 
-    private static final Logger LOGGER = LogManager.getLogger(WalletDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WalletDaoImpl.class);
     private final ConnectionManager connectionManager;
 
     public WalletDaoImpl(ConnectionManager connectionManager) {

@@ -6,8 +6,8 @@ import com.maskalenchyk.education_helper.dal.connection_manager.ConnectionManage
 import com.maskalenchyk.education_helper.entity.UserAccount;
 import com.maskalenchyk.education_helper.entity.UserRole;
 import com.maskalenchyk.education_helper.entity.Wallet;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.text.MessageFormat;
@@ -68,7 +68,7 @@ public class UserAccountDaoImpl implements UserAccountDao {
                     "INSERT INTO user_account_has_role VALUES (last_insert_id()," +
                     "(SELECT role_id FROM role WHERE role_name='user'));";
 
-    private static final Logger LOGGER = LogManager.getLogger(UserAccountDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountDaoImpl.class);
     private final ConnectionManager connectionManager;
     private final WalletDao walletDao;
 

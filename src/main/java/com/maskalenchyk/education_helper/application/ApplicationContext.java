@@ -16,14 +16,15 @@ import com.maskalenchyk.education_helper.service.EmailServiceImpl;
 import com.maskalenchyk.education_helper.service.PasswordServiceImpl;
 import com.maskalenchyk.education_helper.service.UserServiceImpl;
 import com.maskalenchyk.education_helper.service.WalletServiceImpl;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ApplicationContext implements BeanRegistry {
 
-    private static final Logger LOGGER = Logger.getLogger(ApplicationContext.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationContext.class);
     private static final Lock LOCK = new ReentrantLock();
     private static ApplicationContext instance;
 

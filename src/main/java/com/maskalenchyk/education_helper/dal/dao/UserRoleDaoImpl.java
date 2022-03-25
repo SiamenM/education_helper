@@ -4,8 +4,8 @@ import com.maskalenchyk.education_helper.core.Bean;
 import com.maskalenchyk.education_helper.dal.connection.ConnectionException;
 import com.maskalenchyk.education_helper.dal.connection_manager.ConnectionManager;
 import com.maskalenchyk.education_helper.entity.UserRole;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
     private static final String QUERY_ASSIGN_SEVERAL_ROLES_FOR_USER = "";
     private static final String QUERY_SELECT_ALL_ROLES = "";
 
-    private static final Logger LOGGER = LogManager.getLogger(UserRoleDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserRoleDaoImpl.class);
     private final ConnectionManager connectionManager;
 
     public UserRoleDaoImpl(ConnectionManager connectionManager) {
@@ -61,10 +61,10 @@ public class UserRoleDaoImpl implements UserRoleDao {
     public void assignRoleForUser(Long idUser, UserRole userRole) throws DaoException {
         String userRoleName = userRole.name().toLowerCase();
         try (Connection connection = connectionManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(QUERY_ASSIGN_ROLE_FOR_USER)){
+             PreparedStatement statement = connection.prepareStatement(QUERY_ASSIGN_ROLE_FOR_USER)) {
             int i = 0;
-            statement.setLong(++i,idUser);
-            statement.setString(++i,userRoleName);
+            statement.setLong(++i, idUser);
+            statement.setString(++i, userRoleName);
             statement.executeUpdate();
 
         } catch (ConnectionException | SQLException e) {

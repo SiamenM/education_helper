@@ -3,16 +3,16 @@ package com.maskalenchyk.education_helper.dal.transaction_manager;
 import com.maskalenchyk.education_helper.core.Bean;
 import com.maskalenchyk.education_helper.dal.connection.ConnectionException;
 import com.maskalenchyk.education_helper.dal.connection.DataSource;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.MessageFormat;
 
 @Bean
 public class TransactionManagerImpl implements TransactionManager {
 
-    private static final Logger LOGGER = Logger.getLogger(TransactionManagerImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionManagerImpl.class);
     private static final String EMPTY_CURRENT_CONNECTION_MESSAGE = "Local thread connection is empty";
     private final DataSource dataSource;
     private ThreadLocal<Connection> currentConnection = new ThreadLocal<>();
@@ -29,7 +29,7 @@ public class TransactionManagerImpl implements TransactionManager {
             connection.setAutoCommit(false);
             LOGGER.info("Transaction started");
         } catch (ConnectionException | SQLException e) {
-            LOGGER.error(MessageFormat.format("Transaction didn't start: {0}", e.getMessage()));
+            LOGGER.error("Transaction didn't start: {}", e.getMessage());
             throw new TransactionManagerException(e.getMessage(), e);
         }
     }
@@ -43,7 +43,7 @@ public class TransactionManagerImpl implements TransactionManager {
                 LOGGER.info("Transaction commit");
                 this.close();
             } catch (SQLException e) {
-                LOGGER.error(MessageFormat.format("Commit transaction error: {0}", e.getMessage()));
+                LOGGER.error("Commit transaction error: {}", e.getMessage());
                 throw new TransactionManagerException(e.getMessage(), e);
             }
         } else {
@@ -61,7 +61,7 @@ public class TransactionManagerImpl implements TransactionManager {
                 LOGGER.info("Transaction rollback");
                 this.close();
             } catch (SQLException e) {
-                LOGGER.error(MessageFormat.format("Rollback error: {0}", e.getMessage()));
+                LOGGER.error("Rollback error: {}", e.getMessage());
                 throw new TransactionManagerException(e.getMessage(), e);
             }
         } else {
@@ -83,7 +83,7 @@ public class TransactionManagerImpl implements TransactionManager {
             currentConnection.remove();
             LOGGER.info("Transaction closed");
         } catch (SQLException e) {
-            LOGGER.error(MessageFormat.format("Transaction closing exception {0}", e.getMessage()));
+            LOGGER.error("Transaction closing exception {}", e.getMessage());
             throw new TransactionManagerException(e.getMessage(), e);
         }
     }

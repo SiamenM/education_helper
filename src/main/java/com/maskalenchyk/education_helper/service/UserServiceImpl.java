@@ -9,7 +9,8 @@ import com.maskalenchyk.education_helper.entity.UserRole;
 import com.maskalenchyk.education_helper.entity.Wallet;
 import com.maskalenchyk.education_helper.service.exceptions.ServiceException;
 import com.maskalenchyk.education_helper.service.exceptions.UserServiceException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
@@ -19,7 +20,7 @@ import java.util.List;
 @Bean
 public class UserServiceImpl implements UserService {
 
-    private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserAccountDao userAccountDao;
     private final PasswordService passwordService;
     private final EmailService emailService;
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userAccountDao.findById(id);
         } catch (DaoException e) {
-            LOGGER.error(MessageFormat.format("User getting exception: {0}", e.getMessage()));
+            LOGGER.error(MessageFormat.format("User getting exception: {}", e.getMessage()));
             throw new ServiceException(e.getMessage(), e);
         }
     }
@@ -54,7 +55,7 @@ public class UserServiceImpl implements UserService {
                 return null;
             }
         } catch (DaoException e) {
-            LOGGER.error(MessageFormat.format("User finding by login exception: {0}", e.getMessage()));
+            LOGGER.error(MessageFormat.format("User finding by login exception: {}", e.getMessage()));
             throw new ServiceException(e.getMessage(), e);
         }
     }
@@ -115,7 +116,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userAccountDao.findAll();
         } catch (DaoException e) {
-            LOGGER.error(MessageFormat.format("User list finding exception: {0}", e.getMessage()));
+            LOGGER.error(MessageFormat.format("User list finding exception: {}", e.getMessage()));
             throw new ServiceException(e.getMessage(), e);
         }
     }
@@ -127,7 +128,7 @@ public class UserServiceImpl implements UserService {
             try {
                 userAccountDao.delete(userAccount);
             } catch (DaoException e) {
-                LOGGER.error(MessageFormat.format("User deleting exception: {0}", e.getMessage()));
+                LOGGER.error(MessageFormat.format("User deleting exception: {}", e.getMessage()));
                 throw new ServiceException(e.getMessage(), e);
             }
         } else {
@@ -143,7 +144,7 @@ public class UserServiceImpl implements UserService {
         try {
             userAccountDao.assignNewRole(id, roleName);
         } catch (DaoException e) {
-            LOGGER.error(MessageFormat.format("Role adding exception: {0}", e.getMessage()));
+            LOGGER.error(MessageFormat.format("Role adding exception: {}", e.getMessage()));
             throw new ServiceException(e.getMessage(), e);
         }
     }
@@ -154,7 +155,7 @@ public class UserServiceImpl implements UserService {
         try {
             userAccountDao.deleteUserRole(id, roleName);
         } catch (DaoException e) {
-            LOGGER.error(MessageFormat.format("Role deleting exception: {0}", e.getMessage()));
+            LOGGER.error(MessageFormat.format("Role deleting exception: {}", e.getMessage()));
             throw new ServiceException(e.getMessage(), e);
         }
     }
@@ -171,7 +172,7 @@ public class UserServiceImpl implements UserService {
                 throw new UserServiceException(errorMessage, UserServiceException.USER_NOT_EXIST);
             }
         } catch (DaoException e) {
-            LOGGER.error(MessageFormat.format("User updating exception: {0}", e.getMessage()));
+            LOGGER.error(MessageFormat.format("User updating exception: {}", e.getMessage()));
             throw new ServiceException(e.getMessage(), e);
         }
 
@@ -185,7 +186,7 @@ public class UserServiceImpl implements UserService {
                 userAccount.setPassword(newPasswordHash);
                 userAccountDao.update(userAccount);
             } catch (DaoException e) {
-                LOGGER.error(MessageFormat.format("Password changing exception: {0}", e.getMessage()));
+                LOGGER.error(MessageFormat.format("Password changing exception: {}", e.getMessage()));
                 throw new ServiceException(e.getMessage(), e);
             }
         } else {

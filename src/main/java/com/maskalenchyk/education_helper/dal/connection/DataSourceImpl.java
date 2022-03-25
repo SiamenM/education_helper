@@ -3,14 +3,15 @@ package com.maskalenchyk.education_helper.dal.connection;
 import com.maskalenchyk.education_helper.core.Bean;
 import com.maskalenchyk.education_helper.dal.connection_pool.ConnectionPool;
 import com.maskalenchyk.education_helper.dal.connection_pool.ConnectionPoolException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 
 @Bean
 public class DataSourceImpl implements DataSource {
 
-    private static final Logger LOGGER = Logger.getLogger(DataSourceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceImpl.class);
     private final ConnectionPool connectionPool;
 
     public DataSourceImpl(ConnectionPool connectionPool) {

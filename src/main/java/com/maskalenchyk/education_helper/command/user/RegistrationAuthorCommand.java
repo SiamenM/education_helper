@@ -8,7 +8,8 @@ import com.maskalenchyk.education_helper.entity.UserRole;
 import com.maskalenchyk.education_helper.service.UserService;
 import com.maskalenchyk.education_helper.service.exceptions.ServiceException;
 import com.maskalenchyk.education_helper.service.exceptions.UserServiceException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @Bean(name = "REGISTRATION_AUTHOR")
 public class RegistrationAuthorCommand extends AbstractCommand {
 
-    public static final Logger LOGGER = Logger.getLogger(RegistrationAuthorCommand.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(RegistrationAuthorCommand.class);
     public static final String USER_NAME = "userName";
     public static final String USER_EMAIL = "userEmail";
     public static final String USER_PHONE = "userPhone";
@@ -57,14 +58,14 @@ public class RegistrationAuthorCommand extends AbstractCommand {
         }
         try {
             UserAccount registeredUser = userService.createUserAccount(userEmail, userPhone, userName, userRoleList, userAdditionalInfo);
-            LOGGER.info("User " + registeredUser.getId() + " have registered.");
+            LOGGER.info("User {} have registered.", registeredUser.getId());
             request.setAttribute(REGISTRATION_RESPONSE, "1");
             forward(request, response, "/WEB-INF/jsp/authorRegistrationPage");
 
             //результат успешного выполнения
 
         } catch (UserServiceException e) {
-            LOGGER.info("Registration failed for " + userEmail + ", " + userPhone);
+            LOGGER.info("Registration failed for {} , {}", userEmail, userPhone);
             String errorMessage;
             switch (e.getErrorCode()) {
                 case UserServiceException.EMAIL_ALREADY_EXISTS:
